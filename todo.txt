@@ -1,0 +1,9 @@
+odoslat design na nacenenie dialog
+pridat button do fototapiet na aplikaciu vsade
+pridat filtrovanie materialov korpusu podla kategorie
+zmnena farby stien v nahlade
+zmnena farby spodku stien v nahlade
+//otvaranie dveri do nahladu
+//pridat button do materialov casti dvier na kopiu dvier
+//skratit button names a pridat titles do buttonov na toolbare
+//pridat kategorie do materialov corpusu
