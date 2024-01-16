@@ -1,5 +1,4 @@
 import { Grid, ToggleButton, ToggleButtonGroup } from "@mui/material";
-import { useAppSelector } from "src/store/hooks";
 import { useTranslation } from "react-i18next";
 import { APP_LANGUAGES } from "src/types";
 import { Fragment } from "react";
@@ -7,14 +6,7 @@ import ReactCountryFlag from "react-country-flag";
 
 export function LanguageSettings() {
 
-    const visibleDoors = useAppSelector(state => state.wardrobeApp.visibleDoors);
-
     const { t, i18n } = useTranslation();
-
-    const appSettings: string[] = [];
-    if (visibleDoors) {
-        appSettings.push("doors");
-    }
 
     function handleLanguage(_: React.MouseEvent<HTMLElement>, newLanguage: string | null) {
         if (newLanguage !== null) {

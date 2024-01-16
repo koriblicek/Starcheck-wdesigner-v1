@@ -90,6 +90,14 @@ export const wardrobeSaveSlice = createSlice({
             const materialId = state.save.doors.doorsData[action.payload.doorId].doorPartsMaterialIds[action.payload.doorPartId];
             state.save.doors.doorsData[action.payload.doorId] = { ...state.save.doors.doorsData[action.payload.doorId], doorPartsMaterialIds: Array(...Array(state.save.doors.doorsData[action.payload.doorId].doorPartsMaterialIds.length)).map(() => materialId) } as IWardrobeSaveDoor;
         },
+        applyPhotoWallpaperForAllDoors: (state) => {
+            state.save.doors.doorsData = state.save.doors.doorsData.map((data) => {
+                return {
+                    ...data,
+                    doorPartsMaterialIds: data.doorPartsMaterialIds.map(() => state.settingsSetup.photoWallpaperDoorPartsMaterialId)
+                } as IWardrobeSaveDoor;
+            });
+        },
         updateAllDoors: (state, action: PayloadAction<{ doorData: IWardrobeSaveDoor; }>) => {
             state.save.doors.doorsData = state.save.doors.doorsData.map(() => {
                 return {

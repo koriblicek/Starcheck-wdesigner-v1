@@ -240,6 +240,7 @@ export interface IWardrobeSettingsSetup {
     defaultDoorTypeId: string;
     defaultDoorPartsMaterialIds: string[];
     defaultDoorPartsMaterialId: string;
+    photoWallpaperDoorPartsMaterialId: string;
 }
 //#endregion
 

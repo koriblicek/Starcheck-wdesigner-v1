@@ -19,6 +19,10 @@ const rootElement = document.getElementById(`${APP_NAME}-root`) as HTMLElement;
 if (rootElement) {
   const root = ReactDOM.createRoot(rootElement);
 
+  // //add styles
+  // rootElement.style.width = '100%';
+  // rootElement.style.height = '100%';
+  
   //check for div and loading error
   const dal = "https://www.starcheck.sk/apijs/";
   const di = rootElement.getAttribute("data-id");

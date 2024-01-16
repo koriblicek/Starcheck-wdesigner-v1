@@ -59,13 +59,13 @@ export function App() {
     }
 
     return (
-        <div style={{ position: 'relative', width: '100%', height: '100%' }}>
+        <div style={{ position: 'relative', width: '100%', height: '100vh' }}>
             <Canvas shadows={true} gl={{ antialias: true, toneMapping: NoToneMapping }} linear>
                 <TextureLoaders />
                 <ExtendedOrbitControls />
                 <Perf position="bottom-left" showGraph={false} />
                 {sectionsScreenshoting ? <LightScreenshoting /> : < Light />}
-                <SoftShadows size={50} focus={0} />
+                <SoftShadows size={14} focus={0}/>
                 <Suspense fallback={null}>
                     <Environment background preset="night" />
                 </Suspense>

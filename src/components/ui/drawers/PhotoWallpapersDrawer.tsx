@@ -1,4 +1,4 @@
-import { DialogTitle, Drawer, Grid, IconButton, ImageList, ImageListItem, ImageListItemBar, Typography, useTheme } from '@mui/material';
+import { Button, DialogActions, DialogTitle, Drawer, Grid, IconButton, ImageList, ImageListItem, ImageListItemBar, Typography, useTheme } from '@mui/material';
 import { useTranslation } from 'react-i18next';
 import { useDispatch } from 'react-redux';
 import { useAppSelector } from 'src/store/hooks';
@@ -89,13 +89,13 @@ export function PhotoWallpapersDrawer() {
             <ImageList cols={3} sx={{ mt: 0, mb: 0 }}>
                 {items}
             </ImageList>
-            {/* <DialogActions>
+            <DialogActions>
                 <Button fullWidth variant="contained"
                     onClick={() => {
-                        dispatch(wardrobeSaveActions.updateAllDoorPartsWithPhotoWallpaper());
+                        dispatch(wardrobeSaveActions.applyPhotoWallpaperForAllDoors());
                     }}
                 >{t('button.applySelectedPhotoWallpaperToAll')}</Button>
-            </DialogActions> */}
+            </DialogActions>
         </Drawer>
     );
 }

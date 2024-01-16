@@ -1,6 +1,6 @@
 import { Group, Vector2Tuple, Vector3Tuple } from "three";
 import { useAppSelector } from "src/store/hooks";
-import { ETextureType, IWardrobeSaveDoor } from "src/types";
+import { EMaterialType, IWardrobeSaveDoor } from "src/types";
 import { wardrobeAppActions } from "src/store/wardrobe-data/wardrobeAppSlice";
 import { useDispatch } from "react-redux";
 import { Suspense, useEffect, useRef, useState } from "react";
@@ -78,7 +78,7 @@ function Door({
                     doorsWidth={size[0]}
                     doorsCount={doorCount}
                     wardrobeHeight={size[1]}
-                    isVisible={tt ? tt.textureType === ETextureType.TRANSPARENT : false}
+                    isVisible={tt ? tt.materialType === EMaterialType.NONE : false}
                     data={element}
                 />;
             });
