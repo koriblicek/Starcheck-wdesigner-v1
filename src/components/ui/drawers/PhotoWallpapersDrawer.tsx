@@ -91,7 +91,7 @@ export function PhotoWallpapersDrawer() {
                 }
             </ImageList>
             <DialogActions>
-                <Button fullWidth variant="contained"
+                <Button fullWidth variant="contained" size="small"
                     onClick={() => {
                         dispatch(wardrobeSaveActions.applyPhotoWallpaperForAllDoors());
                     }}

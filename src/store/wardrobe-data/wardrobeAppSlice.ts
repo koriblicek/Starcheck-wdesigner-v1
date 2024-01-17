@@ -25,6 +25,7 @@ const initialState = {
     visibleNewDesignLoader: false,
     visibleSendDesignDialog: false,
     cameraTarget: defaultCameraTarget,
+    shadows: true
     // roomWallColor: 0xffffff,
     // roomBottomWallColor: 0x888888
 } as IWardrobeApp;
@@ -118,6 +119,9 @@ export const wardrobeAppSlice = createSlice({
         },
         setDefaultCameraTarget: (state) => {
             state.cameraTarget = defaultCameraTarget;
+        },
+        toggleShadows: (state) => {
+            state.shadows = !state.shadows;
         }
     }
 });

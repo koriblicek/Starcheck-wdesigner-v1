@@ -14,6 +14,7 @@ i18next
                         confirm: 'Confirm',
                         cancel: 'Cancel',
                         error: 'Error',
+                        shadows: 'Shadows',
                         send: 'Send for price calculations',
                         sendDesign: 'Send',
                         preview: 'Preview',
@@ -37,7 +38,7 @@ i18next
                         applySelectedDoorToAll: 'Apply selected type to all doors',
                         applySelectedPhotoWallpaperToAll: 'Apply photo wallpaper to every door part',
                         applyMaterialToSelectedDoor: 'Apply material to all parts of selected door',
-                        applyDoorDesignToAll:'Apply door design to all doors',
+                        applyDoorDesignToAll: 'Apply door design to all doors',
                     },
                     title: {
                         newDesignDialog: 'New wardrobe design?',
@@ -107,6 +108,7 @@ i18next
                         confirm: 'Potvrdiť',
                         cancel: 'Zrušiť',
                         error: 'Chyba',
+                        shadows: 'Tiene',
                         send: 'Odoslať na nezáväzné nacenenie',
                         sendDesign: 'Odoslať',
                         preview: 'Náhľad',
@@ -130,7 +132,7 @@ i18next
                         applySelectedDoorToAll: 'Aplikovať vybraný typ na všetky dvere',
                         applySelectedPhotoWallpaperToAll: 'Aplikovať fototapetu na všetky časti dvier',
                         applyMaterialToSelectedDoor: 'Aplikovať materiál na celé dvere',
-                        applyDoorDesignToAll:'Aplikovať návrh dvier na všetky dvere',
+                        applyDoorDesignToAll: 'Aplikovať návrh dvier na všetky dvere',
                     },
                     title: {
                         newDesignDialog: 'Vytvoriť novy návrh?',

@@ -1,10 +1,11 @@
 import { APP_NAME, IAppInputData } from './types/index.ts';
 import { store } from './store/store.ts';
 import { Provider } from 'react-redux';
+import { MaterialsProvider } from './context/MaterialsProvider.tsx';
+import { Fragment } from 'react';
 import ReactDOM from 'react-dom/client';
 import AppSettings from './AppSettings.tsx';
 import './translations/i18n';
-import { MaterialsProvider } from './context/MaterialsProvider.tsx';
 
 //input data
 let inputData: IAppInputData | undefined;
@@ -18,11 +19,10 @@ const rootElement = document.getElementById(`${APP_NAME}-root`) as HTMLElement;
 //if no root found
 if (rootElement) {
   const root = ReactDOM.createRoot(rootElement);
-
   // //add styles
   // rootElement.style.width = '100%';
   // rootElement.style.height = '100%';
-  
+
   //check for div and loading error
   const dal = "https://www.starcheck.sk/apijs/";
   const di = rootElement.getAttribute("data-id");
@@ -45,7 +45,12 @@ if (rootElement) {
     // <React.StrictMode>
     <Provider store={store}>
       <MaterialsProvider>
-        {inputData && <AppSettings /*inputData={inputData}*/ />}
+        {inputData &&
+          <Fragment>
+            <AppSettings /*inputData={inputData}*/ />
+          </Fragment>
+        }
+
       </MaterialsProvider>
     </Provider>
     // </React.StrictMode>

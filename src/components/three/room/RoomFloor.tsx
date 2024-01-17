@@ -26,10 +26,6 @@ const RoomFloor = ({
 
     return (
         <Board position={[0, 0, 0]} size={[setup.width, 1, setup.depth]} anchor={{ x: EObjectXAnchor.middle, y: EObjectYAnchor.top, z: EObjectZAnchor.middle }} material={mat} />
-        // <mesh receiveShadow castShadow rotation={[-Math.PI / 2, 0, 0]}>
-        //     <planeGeometry args={[setup.width, setup.depth]} />
-        //     <meshStandardMaterial {...textureProps} metalness={0} roughness={.5} color={0xffffff} />
-        // </mesh>
     );
 };
 

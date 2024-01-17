@@ -23,6 +23,7 @@ function AppSettings(/*{ inputData }: IAppSettingsProps*/) {
     if (response) {
       dispatch(wardrobeSettingsActions.initialize({ data: response }));
       dispatch(wardrobeSaveActions.initializeSettingsSetup({ settingsSetup: response.wardrobeSetup }));
+      //dispatch(wardrobeAppActions.initializeAppInputData({ appInputData: inputData }));
     }
   }, [response, dispatch]);
 

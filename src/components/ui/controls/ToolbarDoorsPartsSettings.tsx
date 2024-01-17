@@ -1,14 +1,15 @@
-import { Button, Grid, useMediaQuery, useTheme } from "@mui/material";
+import { Button, Grid } from "@mui/material";
 import { useTranslation } from "react-i18next";
 import { Fragment } from "react";
 import { wardrobeAppActions } from "src/store/wardrobe-data/wardrobeAppSlice";
 import { useDispatch } from "react-redux";
 import ImageIcon from '@mui/icons-material/Image';
 
-export function ToolbarDoorsPartsSettings() {
+interface IToolbarDoorsPartsSettingsProps {
+    lg: boolean;
+}
 
-    const theme = useTheme();
-    const md = useMediaQuery(theme.breakpoints.up('md'));
+export function ToolbarDoorsPartsSettings({ lg }: IToolbarDoorsPartsSettingsProps) {
 
     const dispatch = useDispatch();
 
@@ -22,7 +23,7 @@ export function ToolbarDoorsPartsSettings() {
                         dispatch(wardrobeAppActions.togglePhotoWallpaperDrawer());
                     }}
                 >
-                    <ImageIcon fontSize='small' sx={{ mr: md ? 1 : 0 }} />{md ? t('button.changePhotoWallpaper') : ''}
+                    <ImageIcon fontSize='small' sx={{ mr: lg ? 1 : 0 }} />{lg ? t('button.changePhotoWallpaper') : ''}
                 </Button>
             </Grid>
         </Fragment>

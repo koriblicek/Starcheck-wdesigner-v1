@@ -24,7 +24,6 @@ const DoorPartPhotoWallpaper = ({
 
     const width = 1 / doorsCount;
     const x = doorId * width;
-
     return (
         <group visible={isVisible}>
             <PlaneUV

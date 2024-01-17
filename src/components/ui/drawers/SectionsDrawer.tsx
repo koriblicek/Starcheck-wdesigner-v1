@@ -97,7 +97,7 @@ export function SectionsDrawer() {
                 }
             </ImageList>
             <DialogActions>
-                <Button fullWidth variant="contained"
+                <Button fullWidth variant="contained" size="small"
                     onClick={() => {
                         dispatch(wardrobeSaveActions.updateAllSections({ sectionReferenceId: sectionsData[selectedSection] }));
                     }}

@@ -1,4 +1,4 @@
-import { Button, Divider, Grid, useMediaQuery, useTheme } from "@mui/material";
+import { Button, Divider, Grid} from "@mui/material";
 import { useTranslation } from "react-i18next";
 import { useDispatch } from "react-redux";
 import { wardrobeSaveActions } from "src/store/wardrobe-data/wardrobeSaveSlice";
@@ -9,10 +9,11 @@ import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
 import RemoveCircleOutlineIcon from '@mui/icons-material/RemoveCircleOutline';
 import CarpenterIcon from '@mui/icons-material/Carpenter';
 
-export function ToolbarSectionsSettings() {
+interface IToolbarSectionsSettingsProps {
+    lg: boolean;
+}
 
-    const theme = useTheme();
-    const md = useMediaQuery(theme.breakpoints.up('md'));
+export function ToolbarSectionsSettings({ lg }: IToolbarSectionsSettingsProps) {
 
     const dispatch = useDispatch();
 
@@ -29,7 +30,7 @@ export function ToolbarSectionsSettings() {
                         dispatch(wardrobeAppActions.toggleCorpusMaterialDrawer());
                     }}
                 >
-                    <CarpenterIcon fontSize='small' sx={{ mr: md ? 1 : 0 }} />{md ? t('button.corpusMaterial') : ''}
+                    <CarpenterIcon fontSize='small' sx={{ mr: lg ? 1 : 0 }} />{lg ? t('button.corpusMaterial') : ''}
                 </Button>
             </Grid>
             <Divider flexItem color="lightgray" orientation="vertical" sx={{ my: 0.5 }} />
@@ -40,7 +41,7 @@ export function ToolbarSectionsSettings() {
                         dispatch(wardrobeSaveActions.removeSection());
                     }}
                 >
-                    <RemoveCircleOutlineIcon fontSize='small' sx={{ mr: md ? 1 : 0 }} />{md ? t('button.removeSection') : ''}
+                    <RemoveCircleOutlineIcon fontSize='small' sx={{ mr: lg ? 1 : 0 }} />{lg ? t('button.removeSection') : ''}
                 </Button>
             </Grid>
             <Grid item>
@@ -50,7 +51,7 @@ export function ToolbarSectionsSettings() {
                         dispatch(wardrobeSaveActions.addSection());
                     }}
                 >
-                    <AddCircleOutlineIcon fontSize='small' sx={{ mr: md ? 1 : 0 }} />{md ? t('button.addSection') : ''}
+                    <AddCircleOutlineIcon fontSize='small' sx={{ mr: lg ? 1 : 0 }} />{lg ? t('button.addSection') : ''}
                 </Button>
             </Grid>
         </Fragment>

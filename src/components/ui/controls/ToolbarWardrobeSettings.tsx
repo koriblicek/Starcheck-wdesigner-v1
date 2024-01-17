@@ -1,4 +1,4 @@
-import { Button, Divider, Grid, useMediaQuery, useTheme } from "@mui/material";
+import { Button, Divider, Grid } from "@mui/material";
 import { useTranslation } from "react-i18next";
 import { wardrobeAppActions } from "src/store/wardrobe-data/wardrobeAppSlice";
 import { useDispatch } from "react-redux";
@@ -9,11 +9,11 @@ import CreateNewFolderIcon from '@mui/icons-material/CreateNewFolder';
 import AlignHorizontalLeftIcon from '@mui/icons-material/AlignHorizontalLeft';
 import AlignHorizontalRightIcon from '@mui/icons-material/AlignHorizontalRight';
 
+interface IToolbarWardrobeSettingsProps {
+    lg: boolean;
+}
 
-export function ToolbarWardrobeSettings() {
-
-    const theme = useTheme();
-    const md = useMediaQuery(theme.breakpoints.up('md'));
+export function ToolbarWardrobeSettings({ lg }: IToolbarWardrobeSettingsProps) {
 
     const dispatch = useDispatch();
 
@@ -27,7 +27,7 @@ export function ToolbarWardrobeSettings() {
                         dispatch(wardrobeAppActions.toggleNewDesignDialog());
                     }}
                 >
-                    <CreateNewFolderIcon fontSize='small' sx={{ mr: md ? 1 : 0 }} />{md ? t('button.newDesign') : ''}
+                    <CreateNewFolderIcon fontSize='small' sx={{ mr: lg ? 1 : 0 }} />{lg ? t('button.newDesign') : ''}
                 </Button>
             </Grid>
             <Divider flexItem color="lightgray" orientation="vertical" sx={{ my: 0.5 }} />
@@ -37,7 +37,7 @@ export function ToolbarWardrobeSettings() {
                         dispatch(wardrobeAppActions.toggleDimensionsDrawer());
                     }}
                 >
-                    <ArchitectureIcon fontSize='small' sx={{ mr: md ? 1 : 0 }} />{md ? t('button.dimensions') : ''}
+                    <ArchitectureIcon fontSize='small' sx={{ mr: lg ? 1 : 0 }} />{lg ? t('button.dimensions') : ''}
                 </Button>
             </Grid>
             <Grid item>
@@ -46,7 +46,7 @@ export function ToolbarWardrobeSettings() {
                         dispatch(wardrobeSaveActions.toggleLeftPartition());
                     }}
                 >
-                    <AlignHorizontalLeftIcon fontSize='small' sx={{ mr: md ? 1 : 0 }} />{md ? t('button.leftPartition') : ''}
+                    <AlignHorizontalLeftIcon fontSize='small' sx={{ mr: lg ? 1 : 0 }} />{lg ? t('button.leftPartition') : ''}
                 </Button>
             </Grid>
             <Grid item>
@@ -55,7 +55,7 @@ export function ToolbarWardrobeSettings() {
                         dispatch(wardrobeSaveActions.toggleRightPartition());
                     }}
                 >
-                    {md ? t('button.rightPartition') : ''}<AlignHorizontalRightIcon fontSize='small' sx={{ ml: md ? 1 : 0 }} />
+                    {lg ? t('button.rightPartition') : ''}<AlignHorizontalRightIcon fontSize='small' sx={{ ml: lg ? 1 : 0 }} />
                 </Button>
             </Grid>
         </Fragment>

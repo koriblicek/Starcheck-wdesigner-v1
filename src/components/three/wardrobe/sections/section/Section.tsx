@@ -2,6 +2,7 @@ import { Vector3Tuple } from "three";
 import { useAppSelector } from "src/store/hooks";
 import { useDispatch } from "react-redux";
 import { wardrobeAppActions } from "src/store/wardrobe-data/wardrobeAppSlice";
+import { useMemo } from "react";
 import Shelf from "./parts/Shelf";
 import VerticalShelf from "./parts/VerticalShelf";
 import Hanger from "./parts/Hanger";
@@ -26,34 +27,46 @@ function Section({ sectionReferenceId, sectionId, position, size }: ISectionProp
 
     const selectedSection = useAppSelector(state => state.wardrobeApp.selectedSection);
 
-    const shelves = sectionsSetup[sectionReferenceId].shelves?.map((item, index) => {
-        return <Shelf
-            key={index}
-            size={[size[0], size[1], size[2]]}
-            data={item}
-        />;
-    });
-    const verticalShelves = sectionsSetup[sectionReferenceId].verticalShelves?.map((item, index) => {
-        return <VerticalShelf
-            key={index}
-            size={[size[0], size[1], size[2]]}
-            data={item}
-        />;
-    });
-    const hangers = sectionsSetup[sectionReferenceId].hangers?.map((item, index) => {
-        return <Hanger
-            key={index}
-            size={[size[0], size[1], size[2]]}
-            data={item}
-        />;
-    });
-    const drawers = sectionsSetup[sectionReferenceId].drawers?.map((item, index) => {
-        return <Drawer
-            key={index}
-            size={[size[0], size[1], size[2]]}
-            data={item}
-        />;
-    });
+    const shelves = useMemo(() => {
+        return sectionsSetup[sectionReferenceId].shelves?.map((item, index) => {
+            return <Shelf
+                key={index}
+                size={[size[0], size[1], size[2]]}
+                data={item}
+            />;
+        });
+    }, [sectionsSetup, size, sectionReferenceId]);
+
+    const verticalShelves = useMemo(() => {
+        return sectionsSetup[sectionReferenceId].verticalShelves?.map((item, index) => {
+            return <VerticalShelf
+                key={index}
+                size={[size[0], size[1], size[2]]}
+                data={item}
+            />;
+        });
+    }, [sectionsSetup, size, sectionReferenceId]);
+
+    const hangers = useMemo(() => {
+        return sectionsSetup[sectionReferenceId].hangers?.map((item, index) => {
+            return <Hanger
+                key={index}
+                size={[size[0], size[1], size[2]]}
+                data={item}
+            />;
+        });
+
+    }, [sectionsSetup, size, sectionReferenceId]);
+
+    const drawers = useMemo(() => {
+        return sectionsSetup[sectionReferenceId].drawers?.map((item, index) => {
+            return <Drawer
+                key={index}
+                size={[size[0], size[1], size[2]]}
+                data={item}
+            />;
+        });
+    }, [sectionsSetup, size, sectionReferenceId]);
 
     function handleClick() {
         dispatch(wardrobeAppActions.selectSection({ sectionId }));

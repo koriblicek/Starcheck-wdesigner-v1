@@ -60,7 +60,7 @@ export function ExtendedOrbitControls() {
             minDistance={1.4}
             enablePan={false}
             dampingFactor={.3}
-            domElement={document.body}
+            // domElement={document.body}
             makeDefault
         />
 

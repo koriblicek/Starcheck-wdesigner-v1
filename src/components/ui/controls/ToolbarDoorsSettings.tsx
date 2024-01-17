@@ -1,4 +1,4 @@
-import { Button, Divider, Grid, useMediaQuery, useTheme } from "@mui/material";
+import { Button, Divider, Grid } from "@mui/material";
 import { useTranslation } from "react-i18next";
 import { useDispatch } from "react-redux";
 import { wardrobeSaveActions } from "src/store/wardrobe-data/wardrobeSaveSlice";
@@ -9,10 +9,11 @@ import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
 import RemoveCircleOutlineIcon from '@mui/icons-material/RemoveCircleOutline';
 import HardwareIcon from '@mui/icons-material/Hardware';
 
-export function ToolbarDoorsSettings() {
+interface IToolbarDoorsSettingsProps {
+    lg: boolean;
+}
 
-    const theme = useTheme();
-    const md = useMediaQuery(theme.breakpoints.up('md'));
+export function ToolbarDoorsSettings({ lg }: IToolbarDoorsSettingsProps) {
 
     const dispatch = useDispatch();
 
@@ -29,7 +30,7 @@ export function ToolbarDoorsSettings() {
                         dispatch(wardrobeAppActions.toggleIronWorkDrawer());
                     }}
                 >
-                    <HardwareIcon fontSize='small' sx={{ mr: md ? 1 : 0 }} />{md ? t('button.ironworks') : ''}
+                    <HardwareIcon fontSize='small' sx={{ mr: lg ? 1 : 0 }} />{lg ? t('button.ironworks') : ''}
                 </Button>
             </Grid>
             <Divider flexItem color="lightgray" orientation="vertical" sx={{ my: 0.5 }} />
@@ -40,7 +41,7 @@ export function ToolbarDoorsSettings() {
                         dispatch(wardrobeSaveActions.removeDoor());
                     }}
                 >
-                    <RemoveCircleOutlineIcon fontSize='small' sx={{ mr: md ? 1 : 0 }} />{md ? t('button.removeDoor') : ''}
+                    <RemoveCircleOutlineIcon fontSize='small' sx={{ mr: lg ? 1 : 0 }} />{lg ? t('button.removeDoor') : ''}
                 </Button>
             </Grid>
             <Grid item>
@@ -50,7 +51,7 @@ export function ToolbarDoorsSettings() {
                         dispatch(wardrobeSaveActions.addDoor());
                     }}
                 >
-                    <AddCircleOutlineIcon fontSize='small' sx={{ mr: md ? 1 : 0 }} />{md ? t('button.addDoor') : ''}
+                    <AddCircleOutlineIcon fontSize='small' sx={{ mr: lg ? 1 : 0 }} />{lg ? t('button.addDoor') : ''}
                 </Button>
             </Grid>
         </Fragment>

@@ -1,4 +1,4 @@
-import { Divider, Grid, Paper, ToggleButton, ToggleButtonGroup } from "@mui/material";
+import { Divider, Grid, Paper, ToggleButton, ToggleButtonGroup, useMediaQuery, useTheme } from "@mui/material";
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useDispatch } from "react-redux";
@@ -14,8 +14,12 @@ import DoorSlidingIcon from '@mui/icons-material/DoorSliding';
 import SplitscreenIcon from '@mui/icons-material/Splitscreen';
 import PreviewIcon from '@mui/icons-material/Preview';
 import ConstructionIcon from '@mui/icons-material/Construction';
+import { QualitySettings } from "./QualitySettings";
 
 export function Toolbar() {
+    
+    const theme = useTheme();
+    const lg = useMediaQuery(theme.breakpoints.up('lg'));
 
     const dispatch = useDispatch();
 
@@ -74,6 +78,8 @@ export function Toolbar() {
             <Grid container alignItems='center' justifyContent="left" flexDirection='row' columnGap={1} rowGap={1}>
                 <LanguageSettings />
                 <Divider flexItem color="lightgray" orientation="vertical" sx={{ my: 0.5 }} />
+                <QualitySettings />
+                <Divider flexItem color="lightgray" orientation="vertical" sx={{ my: 0.5 }} />
                 <Grid item>
                     <ToggleButtonGroup
                         size="small"
@@ -116,19 +122,19 @@ export function Toolbar() {
                 </Grid>
                 <Divider flexItem color="lightgray" orientation="vertical" sx={{ my: 0.5 }} />
                 {settings === "wardrobe" &&
-                    <ToolbarWardrobeSettings />
+                    <ToolbarWardrobeSettings lg={lg} />
                 }
                 {settings === "sections" &&
-                    <ToolbarSectionsSettings />
+                    <ToolbarSectionsSettings lg={lg} />
                 }
                 {settings === "doors" &&
-                    <ToolbarDoorsSettings />
+                    <ToolbarDoorsSettings lg={lg} />
                 }
                 {settings === "doorsParts" &&
-                    <ToolbarDoorsPartsSettings />
+                    <ToolbarDoorsPartsSettings lg={lg} />
                 }
                 {settings === "preview" &&
-                    <ToolbarPreviewSettings />
+                    <ToolbarPreviewSettings lg={lg} />
                 }
             </Grid>
         </Paper >
