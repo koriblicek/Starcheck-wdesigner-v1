@@ -25,8 +25,8 @@ const initialState = {
     visibleNewDesignLoader: false,
     visibleSendDesignDialog: false,
     cameraTarget: defaultCameraTarget,
-    roomWallColor: 0xffffff,
-    roomBottomWallColor: 0x888888
+    // roomWallColor: 0xffffff,
+    // roomBottomWallColor: 0x888888
 } as IWardrobeApp;
 
 export const wardrobeAppSlice = createSlice({

@@ -1,7 +1,6 @@
 import { Canvas, useFrame } from '@react-three/fiber';
 import { Group, NoToneMapping } from 'three';
 import { Perf } from 'r3f-perf';
-import { useAppSelector } from 'src/store/hooks';
 import { Controls } from './ui/Controls';
 import { Drawers } from './ui/drawers/Drawers';
 import { ExtendedOrbitControls } from './three/utils/camera/ExtendedOrbitControls';
@@ -27,7 +26,7 @@ function Light() {
     return (
         <group ref={ref}>
             <ambientLight intensity={1.4} />
-            <directionalLight position={[8, 1, 1]} castShadow intensity={3.6} shadow-mapSize={2048} shadow-bias={-0.0001} target={o}>
+            <directionalLight position={[8, 1, 1]} castShadow intensity={3.6} shadow-mapSize={1024} shadow-bias={-.005} target={o}>
                 <orthographicCamera attach="shadow-camera" args={[-10, 3, 5, -6, 0, 15]} />
             </directionalLight>
             <directionalLight position={[0, 2, 0]} intensity={1.3} target={o} />
@@ -50,13 +49,6 @@ function LightScreenshoting() {
 export function App() {
 
     const [sectionsScreenshoting] = useState<boolean>(false);
-
-    //todo DEL
-    const save = useAppSelector(state => state.wardrobeSave);
-
-    if (!save.save.dimensions) {
-        return;
-    }
 
     return (
         <div style={{ position: 'relative', width: '100%', height: '100vh' }}>

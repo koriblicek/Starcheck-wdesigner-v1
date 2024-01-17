@@ -4,6 +4,7 @@ import { IWardrobeSave, IWardrobeSaveDoor, IWardrobeSettingsSetup } from 'src/ty
 
 const initialState = {
     save: {} as IWardrobeSave,
+    initialized: false,
     canAddSection: false,
     canRemoveSection: false,
     canAddDoor: false,
@@ -18,6 +19,8 @@ export const wardrobeSaveSlice = createSlice({
         //#region INITIALIZATION
         initializeSave: (state, action: PayloadAction<{ data: IWardrobeSave; }>) => {
             state.save = action.payload.data;
+            //set initialized
+            state.initialized = true;
             //recalculate all
             wardrobeSaveSlice.caseReducers.recalcAll(state);
         },

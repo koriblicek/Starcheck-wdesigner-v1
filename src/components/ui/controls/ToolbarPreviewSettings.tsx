@@ -1,4 +1,4 @@
-import { Button, Grid,  useMediaQuery, useTheme } from "@mui/material";
+import { Button, Grid, useMediaQuery, useTheme } from "@mui/material";
 import { useTranslation } from "react-i18next";
 import { Fragment } from "react";
 import { wardrobeAppActions } from "src/store/wardrobe-data/wardrobeAppSlice";

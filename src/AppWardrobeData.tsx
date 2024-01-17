@@ -3,8 +3,9 @@ import { Alert, AlertTitle, CircularProgress, Grid, Typography } from '@mui/mate
 import { Fragment, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { App } from './components/App';
-import useGetAxios from './hooks/useGetAxios';
 import { wardrobeSaveActions } from './store/wardrobe-data/wardrobeSaveSlice';
+import { useAppSelector } from './store/hooks';
+import useGetAxios from './hooks/useGetAxios';
 
 // interface IAppWardrobeDataProps {
 //   inputData: IAppInputData;
@@ -18,6 +19,8 @@ function AppWardrobeData(/*{ inputData }: IAppSettingsProps*/) {
   //const { response, error, isLoading } = useGetAxios<IWardrobeSettings>(inputData.dataApiLink + inputData.dataId + "/" + inputData.dataModule + "/" + inputData.dataVersion + "/settings");
   const { response, error, isLoading } = useGetAxios<IWardrobeSave>("/20240104_1e71138d-6aae-4d50-9c63-cfe0d8186a22.json");
 
+  const initialized = useAppSelector(state => state.wardrobeSave.initialized);
+  
   useEffect(() => {
     if (response) {
       dispatch(wardrobeSaveActions.initializeSave({ data: response }));
@@ -40,7 +43,7 @@ function AppWardrobeData(/*{ inputData }: IAppSettingsProps*/) {
           <Typography variant="body1">{error.message}</Typography>
         </Alert>
       }
-      {!isLoading && !error && response &&
+      {!isLoading && !error && initialized &&
         <App />
       }
     </Fragment>

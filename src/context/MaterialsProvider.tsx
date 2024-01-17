@@ -1,18 +1,17 @@
 import { PropsWithChildren, useReducer } from 'react';
 import { MeshStandardMaterial } from 'three';
 import { IMaterialsStateContext, MaterialsDispatchContext, MaterialsStateContext } from './context';
-
+import * as THREE from 'three';
 
 const defaultMaterialsState: IMaterialsStateContext = {
     hangerMaterial: new MeshStandardMaterial({ color: 0xeeeeee, metalness: .66, roughness: .2 }),
-    //transparent: true, depthWrite: true, opacity: .3, 
     selectionMaterialOver: new MeshStandardMaterial({ transparent: true, depthTest: true, depthWrite: false, opacity: .3, color: '#dce00d' }),
     selectionMaterialOut: new MeshStandardMaterial({ transparent: true, depthTest: true, depthWrite: false, opacity: 0 }),
     corpusMaterial: new MeshStandardMaterial({ color: "#ff0000" }),
     ironWorkMaterial: new MeshStandardMaterial({ color: 0xffffff }),
-    photoWallpaperMaterial: new MeshStandardMaterial({ color: 0xffffff }),
-    roomWallMaterial: new MeshStandardMaterial({ color: 0x000000 }),
-    roomBottomWallMaterial: new MeshStandardMaterial({ color: 0x000000 })
+    photoWallpaperMaterial: new MeshStandardMaterial({ side: THREE.DoubleSide }),
+    roomWallMaterial: new MeshStandardMaterial({ color: 0xffffff }),
+    roomBottomWallMaterial: new MeshStandardMaterial({ color: 0xcccccc })
 };
 
 export type TMaterialAction =

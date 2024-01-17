@@ -22,48 +22,11 @@ export function DoorsDrawer() {
 
     const selectedDoor = useAppSelector(state => state.wardrobeApp.selectedDoor);
 
-    const items = Object.keys(doorsSetup).map((key) => {
-        let border = '.3em transparent solid';
-        if (selectedDoor !== -1) {
-            if (key === doorsData[selectedDoor].doorTypeId) {
-                border = `4px ${theme.palette.primary.dark} solid`;
-            }
-        }
-        return <ImageListItem
-            key={key}
-            sx={[
-                {
-                    '&': {
-                        border: { border },
-                    },
-                    '&:hover': {
-                        borderColor: theme.palette.primary.light,
-                        cursor: 'pointer',
-                    }
-                }
-            ]}
-            onClick={() => {
-                dispatch(wardrobeSaveActions.updateDoor({ doorId: selectedDoor, doorTypeId: key, doorPartsNumber: doorsSetup[key].parts.length }));
-            }}
-        >
-            <img
-                src={`${doorsSetup[key].thumb}`}
-                alt={`${doorsSetup[key].name}`}
-            />
-            <ImageListItemBar
-                title={`${doorsSetup[key].name}`}
-                sx={{
-                    "& .MuiImageListItemBar-titleWrap": { p: 1 }, //styles for wrapper
-                    "& .MuiImageListItemBar-title": { fontSize: '.8rem', textOverflow: 'unset', textWrap: 'wrap', lineHeight: '130%' }, //styles for title
-                }}
-            />
-        </ImageListItem>;
-    });
-
     return (
         <Drawer
             anchor='right'
             open={visible}
+            keepMounted={false}
             onClose={() => {
                 dispatch(wardrobeAppActions.toggleDoorsDrawer());
             }}
@@ -95,7 +58,45 @@ export function DoorsDrawer() {
             </DialogTitle>
 
             <ImageList cols={3} sx={{ mt: 0, mb: 0 }}>
-                {items}
+                {
+                    Object.keys(doorsSetup).map((key) => {
+                        let border = '.3em transparent solid';
+                        if (selectedDoor !== -1) {
+                            if (key === doorsData[selectedDoor].doorTypeId) {
+                                border = `4px ${theme.palette.primary.dark} solid`;
+                            }
+                        }
+                        return <ImageListItem
+                            key={key}
+                            sx={[
+                                {
+                                    '&': {
+                                        border: { border },
+                                    },
+                                    '&:hover': {
+                                        borderColor: theme.palette.primary.light,
+                                        cursor: 'pointer',
+                                    }
+                                }
+                            ]}
+                            onClick={() => {
+                                dispatch(wardrobeSaveActions.updateDoor({ doorId: selectedDoor, doorTypeId: key, doorPartsNumber: doorsSetup[key].parts.length }));
+                            }}
+                        >
+                            <img
+                                src={`${doorsSetup[key].thumb}`}
+                                alt={`${doorsSetup[key].name}`}
+                            />
+                            <ImageListItemBar
+                                title={`${doorsSetup[key].name}`}
+                                sx={{
+                                    "& .MuiImageListItemBar-titleWrap": { p: 1 }, //styles for wrapper
+                                    "& .MuiImageListItemBar-title": { fontSize: '.8rem', textOverflow: 'unset', textWrap: 'wrap', lineHeight: '130%' }, //styles for title
+                                }}
+                            />
+                        </ImageListItem>;
+                    })
+                }
             </ImageList>
             <DialogActions>
                 <Button fullWidth variant="contained" size="small"

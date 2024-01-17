@@ -3,6 +3,7 @@ import { useEffect } from 'react';
 import { useMaterialsDispatchContext } from 'src/context/context';
 import { EMaterialLoader, ETextureType, IWardrobeSettingsMaterialItem } from 'src/types';
 import { MeshStandardMaterial } from 'three';
+import * as THREE from 'three';
 
 function useMaterialLoader(type: EMaterialLoader, data: IWardrobeSettingsMaterialItem) {
 
@@ -40,6 +41,7 @@ function useMaterialLoader(type: EMaterialLoader, data: IWardrobeSettingsMateria
                         ctx({ type: "UPDATE_IRONWORK_MATERIAL", material: material });
                         break;
                     case EMaterialLoader.photoWallpaper:
+                        material.side = THREE.DoubleSide;
                         ctx({ type: "UPDATE_PHOTOWALLPAPER_MATERIAL", material: material });
                         break;
                 }

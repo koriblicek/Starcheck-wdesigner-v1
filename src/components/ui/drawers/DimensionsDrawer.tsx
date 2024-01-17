@@ -48,6 +48,7 @@ export function DimensionsDrawer() {
         <Drawer
             anchor='bottom'
             open={visible}
+            keepMounted={false}
             onClose={() => dispatch(wardrobeAppActions.toggleDimensionsDrawer())}
             slotProps={{
                 backdrop: {

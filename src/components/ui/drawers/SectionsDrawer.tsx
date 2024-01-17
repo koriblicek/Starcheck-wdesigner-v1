@@ -22,44 +22,6 @@ export function SectionsDrawer() {
 
     const selectedSection = useAppSelector(state => state.wardrobeApp.selectedSection);
 
-    const items = Object.keys(sectionsSetup).map((key) => {
-        let border = '.3em transparent solid';
-        if (selectedSection !== -1) {
-            if (key === sectionsData[selectedSection]) {
-                border = `4px ${theme.palette.primary.dark} solid`;
-            }
-        }
-        return <ImageListItem
-            key={key}
-            sx={[
-                {
-                    '&': {
-                        border: { border },
-                    },
-                    '&:hover': {
-                        borderColor: theme.palette.primary.light,
-                        cursor: 'pointer',
-                    }
-                }
-            ]}
-            onClick={() => {
-                dispatch(wardrobeSaveActions.updateSection({ sectionId: selectedSection, sectionReferenceId: key }));
-            }}
-        >
-            <img
-                src={`${sectionsSetup[key].thumb}`}
-                alt={`${sectionsSetup[key].name}`}
-            />
-            <ImageListItemBar
-                title={`${sectionsSetup[key].name}`}
-                sx={{
-                    "& .MuiImageListItemBar-titleWrap": { p: 1 }, //styles for wrapper
-                    "& .MuiImageListItemBar-title": { fontSize: '.8rem', textOverflow: 'unset', textWrap: 'wrap', lineHeight: '130%' }, //styles for title
-                }}
-            />
-        </ImageListItem>;
-    });
-
     return (
         <Drawer
             anchor='right'
@@ -94,7 +56,45 @@ export function SectionsDrawer() {
             </DialogTitle>
 
             <ImageList cols={3} sx={{ mt: 0, mb: 0 }}>
-                {items}
+                {
+                    Object.keys(sectionsSetup).map((key) => {
+                        let border = '.3em transparent solid';
+                        if (selectedSection !== -1) {
+                            if (key === sectionsData[selectedSection]) {
+                                border = `4px ${theme.palette.primary.dark} solid`;
+                            }
+                        }
+                        return <ImageListItem
+                            key={key}
+                            sx={[
+                                {
+                                    '&': {
+                                        border: { border },
+                                    },
+                                    '&:hover': {
+                                        borderColor: theme.palette.primary.light,
+                                        cursor: 'pointer',
+                                    }
+                                }
+                            ]}
+                            onClick={() => {
+                                dispatch(wardrobeSaveActions.updateSection({ sectionId: selectedSection, sectionReferenceId: key }));
+                            }}
+                        >
+                            <img
+                                src={`${sectionsSetup[key].thumb}`}
+                                alt={`${sectionsSetup[key].name}`}
+                            />
+                            <ImageListItemBar
+                                title={`${sectionsSetup[key].name}`}
+                                sx={{
+                                    "& .MuiImageListItemBar-titleWrap": { p: 1 }, //styles for wrapper
+                                    "& .MuiImageListItemBar-title": { fontSize: '.8rem', textOverflow: 'unset', textWrap: 'wrap', lineHeight: '130%' }, //styles for title
+                                }}
+                            />
+                        </ImageListItem>;
+                    })
+                }
             </ImageList>
             <DialogActions>
                 <Button fullWidth variant="contained"

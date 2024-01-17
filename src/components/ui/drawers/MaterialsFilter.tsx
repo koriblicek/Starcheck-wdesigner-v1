@@ -3,13 +3,14 @@ import { useTranslation } from 'react-i18next';
 import CheckIcon from '@mui/icons-material/Check';
 import ClearIcon from '@mui/icons-material/Clear';
 
-export interface IDoorsPartsMaterialsFilterProps {
+export interface IMaterialsFilterProps {
     items: string[];
     filteredItems: string[];
+    itemAsLabel?: boolean;
     onChange: (clickedItem: string) => void;
 }
 
-export function DoorsPartsMaterialsFilter({ items, filteredItems, onChange }: IDoorsPartsMaterialsFilterProps) {
+export function MaterialsFilter({ items, filteredItems, itemAsLabel = true, onChange }: IMaterialsFilterProps) {
 
     const { t } = useTranslation();
 
@@ -21,11 +22,12 @@ export function DoorsPartsMaterialsFilter({ items, filteredItems, onChange }: ID
                     <Chip
                         variant="filled"
                         size="small"
-                        label={t(`label.${value}`)}
+                        label={itemAsLabel ? value : t(`label.${value}`)}
                         color={filtered ? "primary" : "default"}
-                        deleteIcon={filtered ? <ClearIcon /> : <CheckIcon />}
+                        deleteIcon={filtered ? <CheckIcon color="success" /> : <ClearIcon color="error" />}
                         onDelete={() => onChange(value)}
                         onClick={() => onChange(value)}
+                        sx={{borderRadius:1}}
                     />
                 </Grid>;
             })

@@ -291,7 +291,7 @@ export interface IWardrobeApp {
     visibleNewDesignLoader: boolean;
     visibleSendDesignDialog: boolean;
     cameraTarget: Vector3Tuple;
-    roomWallColor: number;
-    roomBottomWallColor: number;
+    // roomWallColor: number;
+    // roomBottomWallColor: number;
 }
 //#endregion

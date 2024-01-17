@@ -7,6 +7,7 @@ import { wardrobeAppActions } from "src/store/wardrobe-data/wardrobeAppSlice";
 import { useDispatch } from "react-redux";
 import PlaneUV from "src/components/three/atoms/PlaneUv";
 import DoorPartClickBox from "../box/DoorPartClickBox";
+import * as THREE from 'three';
 
 function useDoorPartMaterialLoader(data: IWardrobeSettingsMaterialItem) {
     //const envMap = useEnvironment({ files: "/data/envMaps/HDR_111_Parking_Lot_2_Env.hdr" });
@@ -17,7 +18,7 @@ function useDoorPartMaterialLoader(data: IWardrobeSettingsMaterialItem) {
         if (map) {
             switch (data.textureType) {
                 case ETextureType.STANDARD:
-                    setMaterial(new MeshStandardMaterial({ map: map }));
+                    setMaterial(new MeshStandardMaterial({ map: map, side: THREE.DoubleSide }));
                     break;
                 case ETextureType.REFLECTIVE:
                     //setMaterialJSX(<MeshReflectorMaterial resolution={1024} mirror={0} map={map} mixStrength={.2} />);

@@ -20,45 +20,10 @@ export function PhotoWallpapersDrawer() {
 
     const visible = useAppSelector(state => state.wardrobeApp.visiblePhotoWallpaperDrawer);
 
-    const items = Object.keys(photoWallpaperMaterialSetup).map((key) => {
-        let border = '.3em transparent solid';
-        if (key === selectedMaterialId) {
-            border = `4px ${theme.palette.primary.dark} solid`;
-        }
-        return <ImageListItem
-            key={key}
-            sx={[
-                {
-                    '&': {
-                        border: { border },
-                    },
-                    '&:hover': {
-                        borderColor: theme.palette.primary.light,
-                        cursor: 'pointer',
-                    }
-                }
-            ]}
-            onClick={() => dispatch(wardrobeSaveActions.updatePhotoWallpaperMaterialId({ materialId: key }))}
-        >
-            <img
-                src={`${photoWallpaperMaterialSetup[key].thumb}`}
-                alt={`${photoWallpaperMaterialSetup[key].name}`}
-            />
-            <ImageListItemBar
-                title={`${photoWallpaperMaterialSetup[key].name}`}
-                subtitle={t(`label.${photoWallpaperMaterialSetup[key].materialType}`)}
-                sx={{
-                    "& .MuiImageListItemBar-titleWrap": { p: 1 }, //styles for wrapper
-                    "& .MuiImageListItemBar-title": { fontSize: '.8rem', textOverflow: 'unset', textWrap: 'wrap', lineHeight: '130%' }, //styles for title
-                    "& .MuiImageListItemBar-subtitle": { color: "yellow", fontSize: '0.7rem' }, //styles for subtitle
-                }}
-            />
-        </ImageListItem>;
-    });
-
     return (
         <Drawer
             anchor='right'
+            keepMounted={false}
             open={visible}
             onClose={() => dispatch(wardrobeAppActions.togglePhotoWallpaperDrawer())}
             slotProps={{
@@ -87,7 +52,43 @@ export function PhotoWallpapersDrawer() {
                 </Grid>
             </DialogTitle>
             <ImageList cols={3} sx={{ mt: 0, mb: 0 }}>
-                {items}
+                {
+                    Object.keys(photoWallpaperMaterialSetup).map((key) => {
+                        let border = '.3em transparent solid';
+                        if (key === selectedMaterialId) {
+                            border = `4px ${theme.palette.primary.dark} solid`;
+                        }
+                        return <ImageListItem
+                            key={key}
+                            sx={[
+                                {
+                                    '&': {
+                                        border: { border },
+                                    },
+                                    '&:hover': {
+                                        borderColor: theme.palette.primary.light,
+                                        cursor: 'pointer',
+                                    }
+                                }
+                            ]}
+                            onClick={() => dispatch(wardrobeSaveActions.updatePhotoWallpaperMaterialId({ materialId: key }))}
+                        >
+                            <img
+                                src={`${photoWallpaperMaterialSetup[key].thumb}`}
+                                alt={`${photoWallpaperMaterialSetup[key].name}`}
+                            />
+                            <ImageListItemBar
+                                title={`${photoWallpaperMaterialSetup[key].name}`}
+                                subtitle={t(`label.${photoWallpaperMaterialSetup[key].materialType}`)}
+                                sx={{
+                                    "& .MuiImageListItemBar-titleWrap": { p: 1 }, //styles for wrapper
+                                    "& .MuiImageListItemBar-title": { fontSize: '.8rem', textOverflow: 'unset', textWrap: 'wrap', lineHeight: '130%' }, //styles for title
+                                    "& .MuiImageListItemBar-subtitle": { color: "yellow", fontSize: '0.7rem' }, //styles for subtitle
+                                }}
+                            />
+                        </ImageListItem>;
+                    })
+                }
             </ImageList>
             <DialogActions>
                 <Button fullWidth variant="contained"

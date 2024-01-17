@@ -81,11 +81,11 @@ export function SendDesignDialog() {
         //dispatch(wardrobeAppActions.toggleNewDesignLoader());
     }
 
+    console.log(1)
     return (
         <Dialog
             open={visibleSendDesignDialog}
             fullScreen={fullScreen}
-            keepMounted
             maxWidth='sm'
             onClose={() => {
                 handleClose();

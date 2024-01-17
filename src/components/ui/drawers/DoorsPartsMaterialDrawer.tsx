@@ -4,9 +4,10 @@ import { useDispatch } from 'react-redux';
 import { useAppSelector } from 'src/store/hooks';
 import { wardrobeAppActions } from 'src/store/wardrobe-data/wardrobeAppSlice';
 import { wardrobeSaveActions } from 'src/store/wardrobe-data/wardrobeSaveSlice';
-import { DoorsPartsMaterialsFilter } from './DoorsPartsMaterialsFilter';
-import { useEffect, useMemo, useState } from 'react';
+import { MaterialsFilter } from './MaterialsFilter';
+import { useMemo } from 'react';
 import CloseIcon from '@mui/icons-material/Close';
+import useMaterialsFilter from 'src/hooks/useMaterialsFilter';
 
 export function DoorsPartsMaterialDrawer() {
 
@@ -25,71 +26,16 @@ export function DoorsPartsMaterialDrawer() {
 
     const visible = useAppSelector(state => state.wardrobeApp.visibleDoorsPartsDrawer);
 
-    const [materialTypes, setMaterialTypes] = useState<string[]>([]);
-    const [filteredItems, setFilteredItems] = useState<string[]>([]);
-
-    useEffect(() => {
-        setMaterialTypes([...new Set(Object.keys(doorPartsMaterialSetup).map((key) => doorPartsMaterialSetup[key].materialType))]);
-        setFilteredItems([...new Set(Object.keys(doorPartsMaterialSetup).map((key) => doorPartsMaterialSetup[key].materialType))]);
-    }, [doorPartsMaterialSetup]);
+    const { items, filteredItems, toggleItem } = useMaterialsFilter([...new Set(Object.keys(doorPartsMaterialSetup).map((key) => doorPartsMaterialSetup[key].materialType))]);
 
     const fItems = useMemo(() => {
         return Object.keys(doorPartsMaterialSetup).filter((key) => filteredItems.includes(doorPartsMaterialSetup[key].materialType));
     }, [doorPartsMaterialSetup, filteredItems]);
 
-    const items = fItems.map((key) => {
-        let border = '.3em transparent solid';
-        if (selectedDoor !== -1) {
-            if (selectedDoorPart !== -1) {
-                if (key === doorsData[selectedDoor].doorPartsMaterialIds[selectedDoorPart]) {
-                    border = `4px ${theme.palette.primary.dark} solid`;
-                }
-            }
-        }
-        return <ImageListItem
-            key={key}
-            sx={[
-                {
-                    '&': {
-                        border: { border },
-                    },
-                    '&:hover': {
-                        borderColor: theme.palette.primary.light,
-                        cursor: 'pointer',
-                    }
-                }
-            ]}
-            onClick={() => dispatch(wardrobeSaveActions.updateDoorPartMaterialId({ doorId: selectedDoor, doorPartId: selectedDoorPart, materialId: key }))}
-        >
-            <img
-                src={`${doorPartsMaterialSetup[key].thumb}`}
-                alt={`${doorPartsMaterialSetup[key].name}`}
-            />
-            <ImageListItemBar
-                title={`${doorPartsMaterialSetup[key].name}`}
-                subtitle={t(`label.${doorPartsMaterialSetup[key].materialType}`)}
-                sx={{
-                    "& .MuiImageListItemBar-titleWrap": { p: 1 }, //styles for wrapper
-                    "& .MuiImageListItemBar-title": { fontSize: '.8rem', textOverflow: 'unset', textWrap: 'wrap', lineHeight: '130%' }, //styles for title
-                    "& .MuiImageListItemBar-subtitle": { color: "yellow", fontSize: '0.7rem' }, //styles for subtitle
-                }}
-            />
-        </ImageListItem>;
-    });
-
-    function handleOutlineClick(clickedItem: string) {
-        const index = filteredItems.findIndex((item) => clickedItem === item);
-        if (index !== -1) {
-            setFilteredItems((state) => state.filter((item) => clickedItem !== item));
-        } else {
-            setFilteredItems((state) => [...state, clickedItem]);
-        }
-
-    }
-
     return (
         <Drawer
             anchor='right'
+            keepMounted={false}
             open={visible}
             onClose={() => dispatch(wardrobeAppActions.toggleDoorsPartsDrawer())}
             slotProps={{
@@ -116,10 +62,50 @@ export function DoorsPartsMaterialDrawer() {
                         </IconButton>
                     </Grid>
                 </Grid>
-                <DoorsPartsMaterialsFilter items={materialTypes} filteredItems={filteredItems} onChange={handleOutlineClick} />
+                <MaterialsFilter items={items} filteredItems={filteredItems} onChange={toggleItem} itemAsLabel={false} />
             </DialogTitle>
             <ImageList cols={3} sx={{ mt: 0, mb: 0 }}>
-                {items}
+                {
+                    fItems.map((key) => {
+                        let border = '.3em transparent solid';
+                        if (selectedDoor !== -1) {
+                            if (selectedDoorPart !== -1) {
+                                if (key === doorsData[selectedDoor].doorPartsMaterialIds[selectedDoorPart]) {
+                                    border = `4px ${theme.palette.primary.dark} solid`;
+                                }
+                            }
+                        }
+                        return <ImageListItem
+                            key={key}
+                            sx={[
+                                {
+                                    '&': {
+                                        border: { border },
+                                    },
+                                    '&:hover': {
+                                        borderColor: theme.palette.primary.light,
+                                        cursor: 'pointer',
+                                    }
+                                }
+                            ]}
+                            onClick={() => dispatch(wardrobeSaveActions.updateDoorPartMaterialId({ doorId: selectedDoor, doorPartId: selectedDoorPart, materialId: key }))}
+                        >
+                            <img
+                                src={`${doorPartsMaterialSetup[key].thumb}`}
+                                alt={`${doorPartsMaterialSetup[key].name}`}
+                            />
+                            <ImageListItemBar
+                                title={`${doorPartsMaterialSetup[key].name}`}
+                                subtitle={t(`label.${doorPartsMaterialSetup[key].materialType}`)}
+                                sx={{
+                                    "& .MuiImageListItemBar-titleWrap": { p: 1 }, //styles for wrapper
+                                    "& .MuiImageListItemBar-title": { fontSize: '.8rem', textOverflow: 'unset', textWrap: 'wrap', lineHeight: '130%' }, //styles for title
+                                    "& .MuiImageListItemBar-subtitle": { color: "yellow", fontSize: '0.7rem' }, //styles for subtitle
+                                }}
+                            />
+                        </ImageListItem>;
+                    })
+                }
             </ImageList>
             <DialogActions>
                 <Grid container rowGap={1} direction='column'>
