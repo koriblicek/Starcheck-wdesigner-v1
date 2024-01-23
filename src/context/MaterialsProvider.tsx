@@ -11,7 +11,9 @@ const defaultMaterialsState: IMaterialsStateContext = {
     ironWorkMaterial: new MeshStandardMaterial({ color: 0xffffff }),
     photoWallpaperMaterial: new MeshStandardMaterial({ side: THREE.DoubleSide }),
     roomWallMaterial: new MeshStandardMaterial({ color: 0xffffff }),
-    roomBottomWallMaterial: new MeshStandardMaterial({ color: 0xcccccc })
+    roomBottomWallMaterial: new MeshStandardMaterial({ color: 0xcccccc }),
+    screenshot1: "",
+    screenshot2: ""
 };
 
 export type TMaterialAction =
@@ -19,7 +21,9 @@ export type TMaterialAction =
     | { type: 'UPDATE_IRONWORK_MATERIAL', material: MeshStandardMaterial; }
     | { type: 'UPDATE_PHOTOWALLPAPER_MATERIAL', material: MeshStandardMaterial; }
     | { type: 'CHANGE_ROOMWALL_COLOR', color: number; }
-    | { type: 'CHANGE_ROOMBOTTOMWALL_COLOR', color: number; };
+    | { type: 'CHANGE_ROOMBOTTOMWALL_COLOR', color: number; }
+    | { type: 'SET_SCREENSHOT1', screenshot: string; }
+    | { type: 'SET_SCREENSHOT2', screenshot: string; };
 
 function materialsReducer(state: IMaterialsStateContext, action: TMaterialAction) {
     switch (action.type) {
@@ -78,6 +82,13 @@ function materialsReducer(state: IMaterialsStateContext, action: TMaterialAction
             }
             return { ...state, roomBottomWallMaterial: new MeshStandardMaterial({ color: action.color }) };
         }
+        case "SET_SCREENSHOT1": {
+            return { ...state, screenshot1: action.screenshot };
+        }
+        case "SET_SCREENSHOT2": {
+            return { ...state, screenshot2: action.screenshot };
+        }
+
     }
     return defaultMaterialsState;
 }

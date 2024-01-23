@@ -12,6 +12,8 @@ export interface IMaterialsStateContext {
     photoWallpaperMaterial: MeshStandardMaterial;
     roomWallMaterial: MeshStandardMaterial;
     roomBottomWallMaterial: MeshStandardMaterial;
+    screenshot1: string;
+    screenshot2: string;
 }
 
 export const MaterialsStateContext = createContext<IMaterialsStateContext | undefined>(undefined);

@@ -1,8 +1,9 @@
-import { Fragment, useRef, useState } from "react";
+import { Fragment, useEffect, useRef, useState } from "react";
 import { Group } from 'three';
 import { easing } from "maath";
-import { useFrame } from "@react-three/fiber";
+import { useFrame, useThree } from "@react-three/fiber";
 import * as THREE from 'three';
+import { useAppSelector } from "src/store/hooks";
 
 interface ILightProps {
     shadows: boolean;
@@ -16,6 +17,13 @@ function Light({ shadows }: ILightProps) {
             //(state.pointer.y * Math.PI) / 8, (state.pointer.x * Math.PI) / 10
             easing.dampE(ref.current.rotation, [.2 + 0.1 * state.pointer.y, -0.1 + 0.1 * state.pointer.x, 0], .5, delta);
     });
+    shadows = useAppSelector(state => state.wardrobeApp.shadows);
+
+    const three = useThree();
+    
+    useEffect(() => {
+        three.gl.render(three.scene, three.camera);
+    }, [shadows]);
 
     return (
         <group ref={ref}>

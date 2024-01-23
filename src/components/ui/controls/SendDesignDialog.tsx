@@ -1,16 +1,17 @@
-import { Button, Dialog, DialogActions, DialogContent, DialogTitle, Grid, InputAdornment, TextField, useMediaQuery, useTheme } from '@mui/material';
+import { Button, Dialog, DialogActions, DialogContent, DialogTitle, Grid, ImageList, ImageListItem, InputAdornment, Stack, TextField, useMediaQuery, useTheme } from '@mui/material';
 import { useTranslation } from 'react-i18next';
 import { useDispatch } from 'react-redux';
 import { useAppSelector } from 'src/store/hooks';
 import { wardrobeAppActions } from 'src/store/wardrobe-data/wardrobeAppSlice';
 import { useCallback, useEffect, useRef, useState } from 'react';
+import { EMaterialType } from 'src/types';
 import BlockIcon from '@mui/icons-material/Block';
 import BadgeIcon from '@mui/icons-material/Badge';
 import PhoneIcon from '@mui/icons-material/Phone';
 import EmailIcon from '@mui/icons-material/Email';
 import PlaceIcon from '@mui/icons-material/Place';
 import SendIcon from '@mui/icons-material/Send';
-import { EMaterialType } from 'src/types';
+import { useMaterialsStateContext } from 'src/context/context';
 
 export function SendDesignDialog() {
 
@@ -21,6 +22,8 @@ export function SendDesignDialog() {
 
     const save = useAppSelector(state => state.wardrobeSave.save);
     const settings = useAppSelector(state => state.wardrobeSettings);
+
+    const { screenshot1, screenshot2 } = useMaterialsStateContext();
 
     const visibleSendDesignDialog = useAppSelector(state => state.wardrobeApp.visibleSendDesignDialog);
 
@@ -49,7 +52,7 @@ export function SendDesignDialog() {
                     let name = "";
                     if (settings.doorPartsMaterialSetup[pm].materialType === EMaterialType.NONE) {
                         if (settings.photoWallpaperMaterialSetup[save.materials.photoWallpaperMaterialId].materialType === EMaterialType.NONE) {
-                            name = "-"
+                            name = "-";
                         } else {
                             name = settings.photoWallpaperMaterialSetup[save.materials.photoWallpaperMaterialId].name;
                         }
@@ -81,7 +84,6 @@ export function SendDesignDialog() {
         //dispatch(wardrobeAppActions.toggleNewDesignLoader());
     }
 
-    console.log(1)
     return (
         <Dialog
             open={visibleSendDesignDialog}
@@ -156,6 +158,12 @@ export function SendDesignDialog() {
                                 shrink: true
                             }}
                         />
+                    </Grid>
+                    <Grid item xs={12}>
+                        <ImageList cols={2} sx={{ mt: 0, mb: 0 }}>
+                            <ImageListItem> <img src={screenshot1} /></ImageListItem>
+                            <ImageListItem> <img src={screenshot2} /></ImageListItem>
+                        </ImageList>
                     </Grid>
                 </Grid>
             </DialogContent>
