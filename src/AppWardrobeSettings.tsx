@@ -1,25 +1,26 @@
-import { IAppData, IAppInputData } from './types';
+import { IAppData, IWardrobeSettings } from './types';
 import { Alert, AlertTitle, CircularProgress, Grid, Typography } from '@mui/material';
 import { Fragment, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
-import { wardrobeAppDataActions } from './store/wardrobe-data/wardrobeAppDataSlice';
 import useGetAxios from './hooks/useGetAxios';
-import AppWardrobeSettings from './AppWardrobeSettings';
+import AppWardrobeData from './AppWardrobeData';
+import { wardrobeSettingsActions } from './store/wardrobe-data/wardrobeSettingsSlice';
+import { wardrobeSaveActions } from './store/wardrobe-data/wardrobeSaveSlice';
 
-interface IAppSettingsProps {
-  inputData: IAppInputData;
+interface AppWardrobeSettingsProps {
+  appData: IAppData;
 }
 
-function AppSettings({ inputData }: IAppSettingsProps) {
+function AppWardrobeSettings({ appData }: AppWardrobeSettingsProps) {
 
   const dispatch = useDispatch();
 
-  const { response, error, isLoading } = useGetAxios<IAppData>(inputData.dataApiLink + inputData.dataId + "/" + inputData.dataModule + "/" + inputData.dataVersion + "/settings");
+  const { response, error, isLoading } = useGetAxios<IWardrobeSettings>(appData.settingsURL);
 
   useEffect(() => {
     if (response) {
-      dispatch(wardrobeAppDataActions.initializeAppData({ data: response }));
-      //dispatch(wardrobeAppActions.initializeAppInputData({ appInputData: inputData }));
+      dispatch(wardrobeSettingsActions.initialize({ data: response }));
+      dispatch(wardrobeSaveActions.initializeSettingsSetup({ settingsSetup: response.wardrobeSetup }));
     }
   }, [response, dispatch]);
 
@@ -39,11 +40,11 @@ function AppSettings({ inputData }: IAppSettingsProps) {
           <Typography variant="body1">{error.message}</Typography>
         </Alert>
       }
-      {!isLoading && !error && response &&
-        <AppWardrobeSettings appData={response} />
+      {!isLoading && !error &&
+        <AppWardrobeData savePath={response!.wardrobeSetup.defaultSave} />
       }
     </Fragment>
   );
 }
 
-export default AppSettings;
+export default AppWardrobeSettings;

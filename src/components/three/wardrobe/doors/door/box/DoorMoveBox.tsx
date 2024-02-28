@@ -1,7 +1,6 @@
 import { useMaterialsStateContext } from "src/context/context";
 import { Mesh, Vector3Tuple } from "three";
 import { useRef } from "react";
-import { useAppSelector } from "src/store/hooks";
 
 interface IDoorMoveBoxProps {
     onChange: (over: boolean) => void;

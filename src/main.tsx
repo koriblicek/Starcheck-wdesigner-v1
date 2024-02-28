@@ -47,7 +47,7 @@ if (rootElement) {
       <MaterialsProvider>
         {inputData &&
           <Fragment>
-            <AppSettings /*inputData={inputData}*/ />
+            <AppSettings inputData={inputData} />
           </Fragment>
         }
 

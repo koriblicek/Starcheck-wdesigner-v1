@@ -10,6 +10,7 @@ export const wardrobeSettingsSlice = createSlice({
     reducers: {
         initialize: (_, action: PayloadAction<{ data: IWardrobeSettings; }>) => {
             //initialize data
+            console.log(action.payload.data)
             return { ...action.payload.data };
         }
     }

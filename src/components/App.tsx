@@ -1,11 +1,11 @@
-import { Canvas, useThree } from '@react-three/fiber';
+import { Canvas } from '@react-three/fiber';
 import { NoToneMapping } from 'three';
 import { Perf } from 'r3f-perf';
 import { Controls } from './ui/Controls';
 import { Drawers } from './ui/drawers/Drawers';
 import { ExtendedOrbitControls } from './three/utils/camera/ExtendedOrbitControls';
 import { Room } from './three/room/Room';
-import { Suspense, useEffect, useRef } from 'react';
+import { Suspense, useRef } from 'react';
 import { Environment, SoftShadows } from '@react-three/drei';
 import { RoomScreenshoting } from './three/room/RoomScreenshoting';
 import { useAppSelector } from 'src/store/hooks';

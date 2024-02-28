@@ -14,11 +14,17 @@ export interface IAppInputData {
 
 //Settings from API
 export interface IAppData {
+    settingsURL: string;
     dataURL: string;
+    sendUrl: string;
+    emailClient: string;
+
+/*
     emailAdressTest: string;
     imagesURL: string;
     outputURL: string;
-    previewURL: string;
+     previewURL: string;
+     */
 }
 
 //#endregion
@@ -241,6 +247,7 @@ export interface IWardrobeSettingsSetup {
     defaultDoorPartsMaterialIds: string[];
     defaultDoorPartsMaterialId: string;
     photoWallpaperDoorPartsMaterialId: string;
+    defaultSave: string;
 }
 //#endregion
 

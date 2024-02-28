@@ -7,5 +7,6 @@ zmnena farby spodku stien v nahlade
 //pridat kategorie do materialov corpusu
 //pridat button do fototapiet na aplikaciu vsade
 //pridat filtrovanie materialov korpusu podla kategorie
-Pridat save button podla toho ako nacitam data data-project-id
 Upravit linky podla settings v api
+Pridat save button podla toho ako nacitam data data-project-id
+

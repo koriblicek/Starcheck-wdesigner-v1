@@ -2,9 +2,11 @@ import { configureStore } from '@reduxjs/toolkit';
 import { wardrobeSaveReducer } from './wardrobe-data/wardrobeSaveSlice';
 import { wardrobeSettingsReducer } from './wardrobe-data/wardrobeSettingsSlice';
 import { wardrobeAppReducer } from './wardrobe-data/wardrobeAppSlice';
+import { wardrobeAppDataReducer } from './wardrobe-data/wardrobeAppDataSlice';
 
 export const store = configureStore({
   reducer: {
+    wardrobeAppData: wardrobeAppDataReducer,
     wardrobeSave: wardrobeSaveReducer,
     wardrobeSettings: wardrobeSettingsReducer,
     wardrobeApp: wardrobeAppReducer

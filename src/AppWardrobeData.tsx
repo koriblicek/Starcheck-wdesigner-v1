@@ -3,24 +3,22 @@ import { Alert, AlertTitle, CircularProgress, Grid, Typography } from '@mui/mate
 import { Fragment, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { App } from './components/App';
-import { wardrobeSaveActions } from './store/wardrobe-data/wardrobeSaveSlice';
 import { useAppSelector } from './store/hooks';
+import { wardrobeSaveActions } from './store/wardrobe-data/wardrobeSaveSlice';
 import useGetAxios from './hooks/useGetAxios';
 
-// interface IAppWardrobeDataProps {
-//   inputData: IAppInputData;
-// }
+interface IAppWardrobeDataProps {
+  savePath: string;
+}
 
-function AppWardrobeData(/*{ inputData }: IAppSettingsProps*/) {
+function AppWardrobeData({ savePath }: IAppWardrobeDataProps) {
 
   const dispatch = useDispatch();
 
-  //TODO - add wardrobe data to server - ROMAN
-  //const { response, error, isLoading } = useGetAxios<IWardrobeSettings>(inputData.dataApiLink + inputData.dataId + "/" + inputData.dataModule + "/" + inputData.dataVersion + "/settings");
-  const { response, error, isLoading } = useGetAxios<IWardrobeSave>("/20240104_1e71138d-6aae-4d50-9c63-cfe0d8186a22.json");
+  const { response, error, isLoading } = useGetAxios<IWardrobeSave>(savePath);
 
   const initialized = useAppSelector(state => state.wardrobeSave.initialized);
-  
+
   useEffect(() => {
     if (response) {
       dispatch(wardrobeSaveActions.initializeSave({ data: response }));
