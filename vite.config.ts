@@ -9,4 +9,13 @@ export default defineConfig({
       src: "/src",
     },
   },
+  build: {
+    rollupOptions: {
+      output: {
+        dir: './dist/',
+        entryFileNames: 'wdesigner_api_v1.js',
+      }
+    }
+  },
+
 });

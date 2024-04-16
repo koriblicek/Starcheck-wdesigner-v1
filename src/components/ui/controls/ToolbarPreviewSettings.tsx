@@ -6,10 +6,10 @@ import { useDispatch } from "react-redux";
 import SendIcon from '@mui/icons-material/Send';
 
 interface IToolbarPreviewSettingsProps {
-    lg: boolean;
+    visibleText: boolean;
 }
 
-export function ToolbarPreviewSettings({ lg }: IToolbarPreviewSettingsProps) {
+export function ToolbarPreviewSettings({ visibleText }: IToolbarPreviewSettingsProps) {
 
     const dispatch = useDispatch();
 
@@ -22,8 +22,9 @@ export function ToolbarPreviewSettings({ lg }: IToolbarPreviewSettingsProps) {
                     onClick={() => {
                         dispatch(wardrobeAppActions.toggleSendDesignDialog());
                     }}
+                    sx={{ textWrap: 'nowrap' }}
                 >
-                    <SendIcon fontSize='small' sx={{ mr: lg ? 1 : 0 }} />{lg ? t('button.send') : ''}
+                    <SendIcon fontSize='small' sx={{ mr: visibleText ? 1 : 0 }} />{visibleText ? t('button.send') : ''}
                 </Button>
             </Grid>
         </Fragment>

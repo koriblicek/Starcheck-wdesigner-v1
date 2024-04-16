@@ -10,10 +10,10 @@ import RemoveCircleOutlineIcon from '@mui/icons-material/RemoveCircleOutline';
 import CarpenterIcon from '@mui/icons-material/Carpenter';
 
 interface IToolbarSectionsSettingsProps {
-    lg: boolean;
+    visibleText: boolean;
 }
 
-export function ToolbarSectionsSettings({ lg }: IToolbarSectionsSettingsProps) {
+export function ToolbarSectionsSettings({ visibleText }: IToolbarSectionsSettingsProps) {
 
     const dispatch = useDispatch();
 
@@ -29,8 +29,9 @@ export function ToolbarSectionsSettings({ lg }: IToolbarSectionsSettingsProps) {
                     onClick={() => {
                         dispatch(wardrobeAppActions.toggleCorpusMaterialDrawer());
                     }}
+                    sx={{ textWrap: 'nowrap' }}
                 >
-                    <CarpenterIcon fontSize='small' sx={{ mr: lg ? 1 : 0 }} />{lg ? t('button.corpusMaterial') : ''}
+                    <CarpenterIcon fontSize='small' sx={{ mr: visibleText ? 1 : 0 }} />{visibleText ? t('button.corpusMaterial') : ''}
                 </Button>
             </Grid>
             <Divider flexItem color="lightgray" orientation="vertical" sx={{ my: 0.5 }} />
@@ -40,8 +41,9 @@ export function ToolbarSectionsSettings({ lg }: IToolbarSectionsSettingsProps) {
                     onClick={() => {
                         dispatch(wardrobeSaveActions.removeSection());
                     }}
+                    sx={{ textWrap: 'nowrap' }}
                 >
-                    <RemoveCircleOutlineIcon fontSize='small' sx={{ mr: lg ? 1 : 0 }} />{lg ? t('button.removeSection') : ''}
+                    <RemoveCircleOutlineIcon fontSize='small' sx={{ mr: visibleText ? 1 : 0 }} />{visibleText ? t('button.removeSection') : ''}
                 </Button>
             </Grid>
             <Grid item>
@@ -50,8 +52,9 @@ export function ToolbarSectionsSettings({ lg }: IToolbarSectionsSettingsProps) {
                     onClick={() => {
                         dispatch(wardrobeSaveActions.addSection());
                     }}
+                    sx={{ textWrap: 'nowrap' }}
                 >
-                    <AddCircleOutlineIcon fontSize='small' sx={{ mr: lg ? 1 : 0 }} />{lg ? t('button.addSection') : ''}
+                    <AddCircleOutlineIcon fontSize='small' sx={{ mr: visibleText ? 1 : 0 }} />{visibleText ? t('button.addSection') : ''}
                 </Button>
             </Grid>
         </Fragment>

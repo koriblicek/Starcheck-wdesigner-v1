@@ -3,14 +3,26 @@ import { Toolbar } from "./controls/Toolbar";
 import { NewDesignDialog } from "./controls/NewDesignDialog";
 import { NewDesignLoader } from "./controls/NewDesignLoader";
 import { SendDesignDialog } from "./controls/SendDesignDialog";
+import { Stack } from "@mui/material";
+
+const toolbarSx = {
+    p: .5,
+    position: 'absolute',
+    top: 0,
+    right: 0,
+    left: 0,
+    backgroundColor: 'white',
+    overflow: 'auto',
+    scrollbarWidth: 'thin'
+};
 
 export function Controls() {
 
     return (
         <Fragment>
-            <div style={{ position: 'absolute', top: 10, left: 10 }}>
+            <Stack direction="column" sx={toolbarSx}>
                 <Toolbar />
-            </div>
+            </Stack>
             <NewDesignDialog />
             <NewDesignLoader />
             <SendDesignDialog />

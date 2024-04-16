@@ -23,19 +23,21 @@ function ThreeApp({ sectionsScreenshoting }: IThreeAppProps) {
     const shadows = useAppSelector(state => state.wardrobeApp.shadows);
 
     //const rootElement = useAppSelector(state => state.wardrobeApp.in)
-    return <Canvas shadows={shadows} gl={{ antialias: true, toneMapping: NoToneMapping, preserveDrawingBuffer: false }} linear>
-        <TextureLoaders />
-        <ExtendedOrbitControls />
-        <Perf position="bottom-left" showGraph={false} />
-        {sectionsScreenshoting ? <LightScreenshoting /> : <Light shadows={shadows} />}
-        {shadows && <SoftShadows size={14} focus={0} />}
-        <Suspense fallback={null}>
-            <Environment background preset="night" />
-        </Suspense>
-        {sectionsScreenshoting ? <RoomScreenshoting /> : <Room />}
-        <Wardrobe />
-        <Screenshoter />
-    </Canvas>;
+    return (
+        <Canvas shadows={shadows} gl={{ antialias: true, toneMapping: NoToneMapping, preserveDrawingBuffer: false }} linear>
+            <TextureLoaders />
+            <ExtendedOrbitControls />
+            <Perf position="bottom-left" showGraph={false} />
+            {sectionsScreenshoting ? <LightScreenshoting /> : <Light shadows={shadows} />}
+            {shadows && <SoftShadows size={14} focus={0} />}
+            <Suspense fallback={null}>
+                <Environment background preset="night" />
+            </Suspense>
+            {sectionsScreenshoting ? <RoomScreenshoting /> : <Room />}
+            <Wardrobe />
+            <Screenshoter />
+        </Canvas>
+    );
 }
 
 
@@ -43,7 +45,7 @@ export function App() {
 
     const ref = useRef<HTMLDivElement>(null);
     return (
-        <div ref={ref} style={{ width: '100%', height: '100vh' }}>
+        <div ref={ref} style={{ position: 'relative', width: '100%', height: '100vh' }}>
             <ThreeApp sectionsScreenshoting={false} />
             <Controls />
             <Drawers />

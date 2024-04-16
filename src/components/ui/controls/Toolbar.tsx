@@ -1,4 +1,4 @@
-import { Divider, Grid, Paper, ToggleButton, ToggleButtonGroup, useMediaQuery, useTheme } from "@mui/material";
+import { Divider, Paper, Stack, ToggleButton, ToggleButtonGroup, Typography, useMediaQuery, useTheme } from "@mui/material";
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useDispatch } from "react-redux";
@@ -17,9 +17,9 @@ import ConstructionIcon from '@mui/icons-material/Construction';
 import { QualitySettings } from "./QualitySettings";
 
 export function Toolbar() {
-    
+
     const theme = useTheme();
-    const lg = useMediaQuery(theme.breakpoints.up('lg'));
+    const textVisible = useMediaQuery(theme.breakpoints.up('sm'));
 
     const dispatch = useDispatch();
 
@@ -75,68 +75,73 @@ export function Toolbar() {
             p: .5,
             borderRadius: .5
         }}>
-            <Grid container alignItems='center' justifyContent="left" flexDirection='row' columnGap={1} rowGap={1}>
+            <Stack flexDirection="row" gap={1} justifyContent='left' sx={{ pb: 1 }}>
                 <LanguageSettings />
                 <Divider flexItem color="lightgray" orientation="vertical" sx={{ my: 0.5 }} />
                 <QualitySettings />
                 <Divider flexItem color="lightgray" orientation="vertical" sx={{ my: 0.5 }} />
-                <Grid item>
-                    <ToggleButtonGroup
-                        size="small"
-                        color="secondary"
-                        exclusive
-                        value={settings}
-                        onChange={handleSettings}
+                <ToggleButtonGroup
+                    size="small"
+                    color="secondary"
+                    exclusive
+                    value={settings}
+                    onChange={handleSettings}
+                >
+                    <ToggleButton size="small" value="wardrobe"
+                        title={t('button.editWardrobe')}
+                        sx={{ p: .5, textWrap: 'nowrap' }}
                     >
-                        <ToggleButton size="small" value="wardrobe"
-                            title={t('button.editWardrobe')}
-                            sx={{ p: .5 }}
-                        >
-                            <ConstructionIcon />
-                        </ToggleButton>
-                        <ToggleButton size="small" value="sections"
-                            title={t('button.editSections')}
-                            sx={{ p: .5 }}
-                        >
-                            <VerticalShadesClosedIcon />
-                        </ToggleButton>
-                        <ToggleButton size="small" value="doors"
-                            title={t('button.editDoors')}
-                            sx={{ p: .5 }}
-                        >
-                            <DoorSlidingIcon />
-                        </ToggleButton>
-                        <ToggleButton size="small" value="doorsParts"
-                            title={t('button.editDoorsParts')}
-                            sx={{ p: .5 }}
-                        >
-                            <SplitscreenIcon />
-                        </ToggleButton>
-                        <ToggleButton size="small" value="preview"
-                            title={t('button.preview')}
-                            sx={{ p: .5 }}
-                        >
-                            <PreviewIcon />
-                        </ToggleButton>
-                    </ToggleButtonGroup>
-                </Grid>
-                <Divider flexItem color="lightgray" orientation="vertical" sx={{ my: 0.5 }} />
+                        <ConstructionIcon />
+                        {textVisible && <Typography sx={{ mx: 1 }}>{t('button.step1')}</Typography>}
+                    </ToggleButton>
+                    <ToggleButton size="small" value="sections"
+                        title={t('button.editSections')}
+                        sx={{ p: .5, textWrap: 'nowrap' }}
+                    >
+                        <VerticalShadesClosedIcon />
+                        {textVisible && <Typography sx={{ mx: 1 }}>{t('button.step2')}</Typography>}
+                    </ToggleButton>
+                    <ToggleButton size="small" value="doors"
+                        title={t('button.editDoors')}
+                        sx={{ p: .5, textWrap: 'nowrap' }}
+                    >
+                        <DoorSlidingIcon />
+                        {textVisible && <Typography sx={{ mx: 1 }}>{t('button.step3')}</Typography>}
+                    </ToggleButton>
+                    <ToggleButton size="small" value="doorsParts"
+                        title={t('button.editDoorsParts')}
+                        sx={{ p: .5, textWrap: 'nowrap' }}
+                    >
+                        <SplitscreenIcon />
+                        {textVisible && <Typography sx={{ mx: 1 }}>{t('button.step4')}</Typography>}
+                    </ToggleButton>
+                    <ToggleButton size="small" value="preview"
+                        title={t('button.preview')}
+                        sx={{ p: .5, textWrap: 'nowrap' }}
+                    >
+                        <PreviewIcon />
+                        {textVisible && <Typography sx={{ mx: 1 }}>{t('button.step5')}</Typography>}
+                    </ToggleButton>
+                </ToggleButtonGroup>
+            </Stack>
+            <Divider />
+            <Stack flexDirection="row" gap={1} justifyContent='left' sx={{ pt: 1 }}>
                 {settings === "wardrobe" &&
-                    <ToolbarWardrobeSettings lg={lg} />
+                    <ToolbarWardrobeSettings visibleText={textVisible} />
                 }
                 {settings === "sections" &&
-                    <ToolbarSectionsSettings lg={lg} />
+                    <ToolbarSectionsSettings visibleText={textVisible} />
                 }
                 {settings === "doors" &&
-                    <ToolbarDoorsSettings lg={lg} />
+                    <ToolbarDoorsSettings visibleText={textVisible} />
                 }
                 {settings === "doorsParts" &&
-                    <ToolbarDoorsPartsSettings lg={lg} />
+                    <ToolbarDoorsPartsSettings visibleText={textVisible} />
                 }
                 {settings === "preview" &&
-                    <ToolbarPreviewSettings lg={lg} />
+                    <ToolbarPreviewSettings visibleText={textVisible} />
                 }
-            </Grid>
+            </Stack>
         </Paper >
     );
 }

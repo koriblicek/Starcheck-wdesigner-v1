@@ -6,10 +6,10 @@ import { useDispatch } from "react-redux";
 import ImageIcon from '@mui/icons-material/Image';
 
 interface IToolbarDoorsPartsSettingsProps {
-    lg: boolean;
+    visibleText: boolean;
 }
 
-export function ToolbarDoorsPartsSettings({ lg }: IToolbarDoorsPartsSettingsProps) {
+export function ToolbarDoorsPartsSettings({ visibleText }: IToolbarDoorsPartsSettingsProps) {
 
     const dispatch = useDispatch();
 
@@ -22,8 +22,9 @@ export function ToolbarDoorsPartsSettings({ lg }: IToolbarDoorsPartsSettingsProp
                     onClick={() => {
                         dispatch(wardrobeAppActions.togglePhotoWallpaperDrawer());
                     }}
+                    sx={{ textWrap: 'nowrap' }}
                 >
-                    <ImageIcon fontSize='small' sx={{ mr: lg ? 1 : 0 }} />{lg ? t('button.changePhotoWallpaper') : ''}
+                    <ImageIcon fontSize='small' sx={{ mr: visibleText ? 1 : 0 }} />{visibleText ? t('button.changePhotoWallpaper') : ''}
                 </Button>
             </Grid>
         </Fragment>
