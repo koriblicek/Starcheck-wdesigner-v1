@@ -18,7 +18,7 @@ export function ToolbarPreviewSettings({ visibleText }: IToolbarPreviewSettingsP
     return (
         <Fragment>
             <Grid item>
-                <Button size="small" color="warning" variant="contained" title={t('button.send')}
+                <Button size="small" color="secondary" variant="outlined" title={t('button.send')}
                     onClick={() => {
                         dispatch(wardrobeAppActions.toggleSendDesignDialog());
                     }}

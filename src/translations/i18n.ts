@@ -13,6 +13,7 @@ i18next
                         button: 'Button',
                         confirm: 'Confirm',
                         cancel: 'Cancel',
+                        ok: 'OK',
                         error: 'Error',
                         shadows: 'Shadows',
                         send: 'Send for price calculations',
@@ -34,6 +35,7 @@ i18next
                         step3: '3-Doors',
                         step4: '4-Fills',
                         step5: '5-Send',
+                        settings: "Settings",
                         editWardrobe: 'Edit wardrobe',
                         editSections: 'Edit sections',
                         editDoors: 'Edit doors',
@@ -50,10 +52,14 @@ i18next
                         newDesignLoaderError: 'Data loading error!',
                         newDesignLoaderLoading: 'Loading data...',
                         sendDesignDialog: 'Send design for price calculations',
+                        sendDesignUploader: 'Design sending',
                     },
                     text: {
                         newDesignDialog1: 'Confirm new design by clicking "Confirm" button.',
                         newDesignDialog2: 'Attention! Current design will be erased.',
+                        sendDesignUploaderUploading: 'Sending data...',
+                        sendDesignUploaderSent: 'Design successfully sent to our company. You should receive confirmation email shortly and we will provide you with price calculations as soon as possible.',
+                        sendDesignUploaderError: 'There was an unknown error during posting data on our server. Please try again later.',
                     },
                     label: {
                         selectLanguage: 'Select language:',
@@ -99,6 +105,11 @@ i18next
                     message: {
                         error: 'Error!',
                     },
+                    validation: {
+                        mixedRequired: "Field is empty",
+                        stringEmail: "E-mail format is incorrect",
+
+                    },
                     languages: {
                         sk: 'Slovak',
                         gb: 'English',
@@ -112,6 +123,7 @@ i18next
                         button: 'Tlačidlo',
                         confirm: 'Potvrdiť',
                         cancel: 'Zrušiť',
+                        ok: 'OK',
                         error: 'Chyba',
                         shadows: 'Tiene',
                         send: 'Odoslať na nezáväzné nacenenie',
@@ -133,6 +145,7 @@ i18next
                         step3: '3-Dvere',
                         step4: '4-Výplne',
                         step5: '5-Odoslanie',
+                        settings: "Nastavenia",
                         editWardrobe: 'Úprava skine',
                         editSections: 'Úprava sekcií',
                         editDoors: 'Úprava dvier',
@@ -149,10 +162,14 @@ i18next
                         newDesignLoaderError: 'Chyba pri načítaní dát!',
                         newDesignLoaderLoading: 'Načítavam dáta...',
                         sendDesignDialog: 'Odoslať návrh na nezáväzné nacenenie',
+                        sendDesignUploader: 'Odosielanie návrhu',
                     },
                     text: {
                         newDesignDialog1: 'Potvrďte vytvorenie nového návrhu stlačením tlačídla "Potvrdiť".',
                         newDesignDialog2: 'Pozor! Aktuálny návrh bude zmazaný.',
+                        sendDesignUploaderUploading: 'Posielam dáta...',
+                        sendDesignUploaderSent: 'Návrh bol úspešne odoslaný do našej spoločnosti na spracovanie. O chvíľu obdržíte potvrdzovací e-mail. Cenovú kalkulaciu Vám poskytneme čo najskôr.',
+                        sendDesignUploaderError: 'Pri odosielaní návrhu sa vyskytla neznáma chyba. Prosím zopakujte odoslanie návrhu neskôr.',
                     },
                     label: {
                         selectLanguage: 'Vyberte jazyk:',
@@ -174,7 +191,7 @@ i18next
                         lacobel: "Lakobel",
                         mirror: "Zrkadlo",
                         glass: "Sklo",
-                        nameAndSurname: 'Vaše meno',
+                        nameAndSurname: 'Vaše meno a priezvisko',
                         email: 'Váš kontaktný email',
                         phone: 'Váš kontaktný telefón',
                         assemblyPlace: 'Miesto montáže',
@@ -197,6 +214,11 @@ i18next
                     },
                     message: {
                         error: 'Chyba!',
+                    },
+                    validation: {
+                        mixedRequired: "Pole nie je vyplnené",
+                        stringEmail: "Formát e-mailu je nesprávny",
+
                     },
                     languages: {
                         sk: 'Slovensky',

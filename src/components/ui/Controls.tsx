@@ -4,6 +4,8 @@ import { NewDesignDialog } from "./controls/NewDesignDialog";
 import { NewDesignLoader } from "./controls/NewDesignLoader";
 import { SendDesignDialog } from "./controls/SendDesignDialog";
 import { Stack } from "@mui/material";
+import { useAppSelector } from "src/store/hooks";
+import { SendDesignUploader } from "./controls/SendDesignUploader";
 
 const toolbarSx = {
     p: .5,
@@ -18,6 +20,14 @@ const toolbarSx = {
 
 export function Controls() {
 
+    const visibleSendDesignDialog = useAppSelector(state => state.wardrobeApp.visibleSendDesignDialog);
+
+    const visibleSendDesignUploader = useAppSelector(state => state.wardrobeApp.visibleSendDesignUploader);
+    const sendData = useAppSelector(state => state.wardrobeSendData);
+    const saveData = useAppSelector(state => state.wardrobeSave.save);
+    const appInputData = useAppSelector(state => state.wardrobeAppInputData);
+    const appData = useAppSelector(state => state.wardrobeAppData);
+
     return (
         <Fragment>
             <Stack direction="column" sx={toolbarSx}>
@@ -25,7 +35,8 @@ export function Controls() {
             </Stack>
             <NewDesignDialog />
             <NewDesignLoader />
-            <SendDesignDialog />
+            <SendDesignDialog visibleSendDesignDialog={visibleSendDesignDialog} sendData={sendData} saveData={saveData} />
+            <SendDesignUploader visibleSendDesignUploader={visibleSendDesignUploader} sendData={sendData} saveData={saveData} appData={appData} appInputData={appInputData} />
         </Fragment>
     );
 }

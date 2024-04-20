@@ -6,6 +6,7 @@ import { Fragment } from 'react';
 import ReactDOM from 'react-dom/client';
 import AppSettings from './AppSettings.tsx';
 import './translations/i18n';
+import isDev from './utils/index.ts';
 
 //input data
 let inputData: IAppInputData | undefined;
@@ -14,49 +15,53 @@ let inputData: IAppInputData | undefined;
 let errorMessage = "";
 // let error = false;
 
-//find root element
-const rootElement = document.getElementById(`${APP_NAME}-root`) as HTMLElement;
-//if no root found
-if (rootElement) {
-  const root = ReactDOM.createRoot(rootElement);
-  // //add styles
-  // rootElement.style.width = '100%';
-  // rootElement.style.height = '100%';
+//curent script reference live/local
+function getCurrentScript() {
+  if (isDev())
+    return document.getElementById("local-test");
+  else
+    return document.currentScript;
+}
 
+const currentScript = getCurrentScript();
+
+if (currentScript) {
   //check for div and loading error
   const dal = "https://www.starcheck.sk/apijs/";
-  const di = rootElement.getAttribute("data-id");
-  const dm = rootElement.getAttribute("data-module");
-  const dv = rootElement.getAttribute("data-version");
+  const di = currentScript.getAttribute("data-id");
+  const dm = currentScript.getAttribute("data-module");
+  const dv = currentScript.getAttribute("data-version");
+  const ddi = currentScript.getAttribute("data-design-id");
   if ((dal !== null) && (di !== null) && (dm !== null) && (dv !== null)) {
+
     inputData = {
       dataApiLink: dal,
       dataId: di,
       dataModule: dm,
-      dataVersion: dv
+      dataVersion: dv,
+      dataDesignId: ddi ? ddi : ""
     };
+
+    const rootElement = document.getElementById(`${dm}-root`);
+    if (rootElement) {
+      ReactDOM.createRoot(rootElement).render(
+        <Provider store={store}>
+          <MaterialsProvider>
+            {inputData &&
+              <Fragment>
+                <AppSettings inputData={inputData} />
+              </Fragment>
+            }
+
+          </MaterialsProvider>
+        </Provider>
+      );
+    } else {
+      errorMessage = `Root node id '${APP_NAME}-root' not found!`;
+      console.log(`(Starcheck-emails): ${errorMessage}`);
+    }
   } else {
-    // error = true;
-    errorMessage = ` Some of required input data are missing! 'data-id'='${di}','data-module'='${dm}','data-version'='${dv}'`;
+    errorMessage = `Some of required input data are missing! 'data-id'='${di}','data-module'='${dm}','data-version'='${dv}'`;
     console.log(`(Starcheck-wdesigner): ${errorMessage}`);
   }
-
-  root.render(
-    // <React.StrictMode>
-    <Provider store={store}>
-      <MaterialsProvider>
-        {inputData &&
-          <Fragment>
-            <AppSettings inputData={inputData} />
-          </Fragment>
-        }
-
-      </MaterialsProvider>
-    </Provider>
-    // </React.StrictMode>
-  );
-} else {
-  // error = true;
-  errorMessage = `Root node id '${APP_NAME}-root' not found!`;
-  console.log(`(Starcheck-emails): ${errorMessage}`);
 }

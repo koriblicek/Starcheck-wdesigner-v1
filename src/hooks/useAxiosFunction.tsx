@@ -1,61 +1,64 @@
 import axios, { AxiosError, AxiosRequestConfig } from "axios";
 import { useCallback, useEffect, useState } from "react";
 
-interface IGetErrorObj {
+export interface IAxiosErrorObj {
     code: number;
     message: string;
     url: string;
 }
 
-function useGetAxiosFunction<T>() {
+export default function useAxiosFunction<T, S>() {
+    const [error, setError] = useState<IAxiosErrorObj | null>(null);
     const [response, setResponse] = useState<T | null>(null);
-    const [error, setError] = useState<IGetErrorObj | null>(null);
-    const [isLoading, setIsLoading] = useState<boolean>(false);
+    const [isRequesting, setIsRequesting] = useState<boolean>(false);
     const [controller, setController] = useState<AbortController>();
 
-    const axiosFetch = useCallback(async (url: string, params?: AxiosRequestConfig) => {
+    const axiosRequest = useCallback(async (url: string, method: "post" | "get" | "put" | "delete", data?: S, params?: AxiosRequestConfig) => {
         try {
-            setIsLoading(true);
+            setIsRequesting(true);
             setError(null);
             setResponse(null);
 
             const ctrl = new AbortController();
             setController(ctrl);
-
-            const res = await axios.get(url, {
-                ...params,
+            const res = await axios({
+                method,
+                url,
+                data,
+                params,
                 signal: ctrl.signal
             });
-
             setResponse(res.data as T);
         } catch (err) {
             if (axios.isCancel(err)) {
-                console.log("cancel");
                 setError(null);
             } else {
                 if (err instanceof AxiosError) {
+                    console.log(err);
                     setError({
-                        message: err.response?.data.message || "Server Unavailable",
+                        message: err.response?.data.message || err.message,
                         code: err.response?.status || 503,
                         url
                     });
-                }
-                if (err instanceof Error) {
-                    setError({
-                        message: err.message,
-                        code: 500,
-                        url
-                    });
+                } else {
+                    if (err instanceof Error) {
+                        setError({
+                            message: err.message,
+                            code: 500,
+                            url
+                        });
+                    }
                 }
             }
         } finally {
-            setIsLoading(false);
+            setIsRequesting(false);
         }
     }, []);
 
-    const cancelFetch = useCallback(() => {
+    const cancelRequest = useCallback(() => {
         setError(null);
-        setIsLoading(false);
+        setIsRequesting(false);
+        setResponse(null);
         controller && controller.abort();
     }, [controller]);
 
@@ -66,7 +69,5 @@ function useGetAxiosFunction<T>() {
         };
     }, [controller]);
 
-    return { response, error, isLoading, axiosFetch, cancelFetch };
+    return { error, isRequesting, response, axiosRequest, cancelRequest };
 }
-
-export default useGetAxiosFunction;

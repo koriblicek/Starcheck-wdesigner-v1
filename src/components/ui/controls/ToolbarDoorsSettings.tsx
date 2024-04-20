@@ -25,7 +25,7 @@ export function ToolbarDoorsSettings({ visibleText }: IToolbarDoorsSettingsProps
     return (
         <Fragment>
             <Grid item>
-                <Button size="small" color="primary" variant="contained" title={t('button.ironworks')}
+                <Button size="small" color="secondary" variant="outlined" title={t('button.ironworks')}
                     onClick={() => {
                         dispatch(wardrobeAppActions.toggleIronWorkDrawer());
                     }}
@@ -36,7 +36,7 @@ export function ToolbarDoorsSettings({ visibleText }: IToolbarDoorsSettingsProps
             </Grid>
             <Divider flexItem color="lightgray" orientation="vertical" sx={{ my: 0.5 }} />
             <Grid item>
-                <Button size="small" color="info" variant="contained" title={t('button.removeDoor')}
+                <Button size="small" color="info" variant="outlined" title={t('button.removeDoor')}
                     disabled={!canRemoveDoor}
                     onClick={() => {
                         dispatch(wardrobeSaveActions.removeDoor());
@@ -47,7 +47,7 @@ export function ToolbarDoorsSettings({ visibleText }: IToolbarDoorsSettingsProps
                 </Button>
             </Grid>
             <Grid item>
-                <Button size="small" color="info" variant="contained" title={t('button.addDoor')}
+                <Button size="small" color="info" variant="outlined" title={t('button.addDoor')}
                     disabled={!canAddDoor}
                     onClick={() => {
                         dispatch(wardrobeSaveActions.addDoor());

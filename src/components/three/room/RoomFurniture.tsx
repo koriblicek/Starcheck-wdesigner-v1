@@ -39,17 +39,17 @@ const RoomFurniture = ({
     return (
         <group>
             <Suspense fallback={null}>
-                <group position={[-1.2, 0, .5]} rotation={[0, Math.PI * 2 / 3, 0]} >
-                    <primitive object={chair1} />
+                <group position={[-1.2, 0, .5]} rotation={[0, Math.PI * 2 / 3, 0]}>
+                    <primitive object={chair1}/>
                 </group>
                 <group position={[1.3, 0, .5]} rotation={[0, Math.PI * 4.2 / 3, 0]} >
                     <primitive object={chair2} />
                 </group>
-                <group position={[0, 0, .3]} scale={[1.5, 1, 1.5]} >
+                <group position={[0, 0, .3]} scale={[1.5, 1, 1.5]}>
                     <primitive object={table1} />
                 </group>
                 <group position={[setup.width / 2 - .3, 0, -setup.depth / 2 + wardrobeDimensions.depth + 0.2]} scale={[1, 1, 1]} rotation={[0, -Math.PI / 2, 0]}>
-                    <primitive object={curtain1} />
+                    <primitive object={curtain1}/>
                 </group>
             </Suspense>
         </group>

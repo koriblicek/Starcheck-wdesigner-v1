@@ -5,7 +5,7 @@ const initialState = {
 } as IAppData;
 
 export const wardrobeAppDataSlice = createSlice({
-    name: 'wardrobeSettings',
+    name: 'wardrobeAppData',
     initialState,
     reducers: {
         initializeAppData: (_, action: PayloadAction<{ data: IAppData; }>) => {

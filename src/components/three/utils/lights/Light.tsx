@@ -23,7 +23,7 @@ function Light({ shadows }: ILightProps) {
     
     useEffect(() => {
         three.gl.render(three.scene, three.camera);
-    }, [shadows]);
+    }, [shadows, three]);
 
     return (
         <group ref={ref}>

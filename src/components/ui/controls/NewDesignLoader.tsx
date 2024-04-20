@@ -6,8 +6,8 @@ import { useAppSelector } from 'src/store/hooks';
 import { wardrobeAppActions } from 'src/store/wardrobe-data/wardrobeAppSlice';
 import { wardrobeSaveActions } from 'src/store/wardrobe-data/wardrobeSaveSlice';
 import { IWardrobeSave } from 'src/types';
-import useGetAxiosFunction from 'src/hooks/useGetAxiosFunction';
 import CloseIcon from '@mui/icons-material/Close';
+import useAxiosFunction from 'src/hooks/useAxiosFunction';
 
 export function NewDesignLoader() {
 
@@ -15,12 +15,13 @@ export function NewDesignLoader() {
 
     const visibleNewDesignLoader = useAppSelector(state => state.wardrobeApp.visibleNewDesignLoader);
 
+    const { defaultSave } = useAppSelector(state => state.wardrobeSettings.wardrobeSetup);
     const { t } = useTranslation();
 
-    const { response, isLoading, error, axiosFetch, cancelFetch } = useGetAxiosFunction<IWardrobeSave>();
+    const { response, isRequesting, error, axiosRequest, cancelRequest } = useAxiosFunction<IWardrobeSave, null>();
 
     function handleCancel() {
-        cancelFetch();
+        cancelRequest();
         dispatch(wardrobeAppActions.toggleNewDesignLoader());
     }
 
@@ -33,13 +34,13 @@ export function NewDesignLoader() {
 
     useEffect(() => {
         if (visibleNewDesignLoader) {
-            axiosFetch("/20240104_1e71138d-6aae-4d50-9c63-cfe0d8186a22.json");
+            axiosRequest(defaultSave, "get");
         }
-    }, [visibleNewDesignLoader, axiosFetch]);
+    }, [visibleNewDesignLoader, axiosRequest, defaultSave]);
 
     return (
         <Fragment>
-            {isLoading &&
+            {isRequesting &&
                 <Dialog open={visibleNewDesignLoader}>
                     <DialogTitle>{t('title.newDesignLoaderLoading')}</DialogTitle>
                     <DialogContent>

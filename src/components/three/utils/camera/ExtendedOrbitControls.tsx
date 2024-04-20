@@ -23,7 +23,7 @@ export function ExtendedOrbitControls() {
 
     useEffect(() => {
         new TWEEN.Tween(cameraTarget)
-            .to(new Vector3(newCameraTarget[0], newCameraTarget[1], newCameraTarget[2]), 400)
+            .to(new Vector3(newCameraTarget[0], newCameraTarget[1], newCameraTarget[2]), 500)
             .easing(TWEEN.Easing.Quadratic.Out)
             .onUpdate(() => {
                 setCameraTarget(cameraTarget);
@@ -59,7 +59,8 @@ export function ExtendedOrbitControls() {
             maxDistance={5}
             minDistance={1.4}
             enablePan={false}
-            dampingFactor={.3}
+            dampingFactor={0.3}
+            // zoomSpeed={2}
             // domElement={document.body}
             makeDefault
         />

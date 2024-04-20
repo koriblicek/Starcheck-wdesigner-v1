@@ -18,7 +18,7 @@ export function ToolbarDoorsPartsSettings({ visibleText }: IToolbarDoorsPartsSet
     return (
         <Fragment>
             <Grid item>
-                <Button size="small" color="primary" variant="contained" title={t('button.changePhotoWallpaper')}
+                <Button size="small" color="secondary" variant="outlined" title={t('button.changePhotoWallpaper')}
                     onClick={() => {
                         dispatch(wardrobeAppActions.togglePhotoWallpaperDrawer());
                     }}

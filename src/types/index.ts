@@ -2,7 +2,7 @@ import { Vector3Tuple } from "three";
 
 export const APP_NAME = "APIWDESIGNER";
 export const APP_LANGUAGES = ["sk", "gb"];
-
+export const LOCAL_STORAGE_USER_DATA_KEY = "starcheck-wdesigner-v1-user-data";
 //#region APP
 //Input data via div/scriptst
 export interface IAppInputData {
@@ -10,23 +10,16 @@ export interface IAppInputData {
     dataId: string;
     dataModule: string;
     dataVersion: string;
+    dataDesignId: string;
 }
 
 //Settings from API
 export interface IAppData {
     settingsURL: string;
     dataURL: string;
-    sendUrl: string;
+    sendURL: string;
     emailClient: string;
-
-/*
-    emailAdressTest: string;
-    imagesURL: string;
-    outputURL: string;
-     previewURL: string;
-     */
 }
-
 //#endregion
 
 //#region object alignment
@@ -78,6 +71,17 @@ export enum ETextureType {
     SEMITRANSPARENT = "semitransparent"
 }
 //#endregion
+
+// -------------------------------------IWardrobeSend----------------------------------------
+
+export interface IWardrobeSendData {
+    nameAndSurname: string;
+    email: string;
+    phone: string;
+    assemblyPlace: string;
+    comment?: string | null;
+    summary?: string | null;
+}
 
 // -------------------------------------IWardrobeSave----------------------------------------
 
@@ -297,6 +301,7 @@ export interface IWardrobeApp {
     visibleNewDesignDialog: boolean;
     visibleNewDesignLoader: boolean;
     visibleSendDesignDialog: boolean;
+    visibleSendDesignUploader: boolean;
     cameraTarget: Vector3Tuple;
     shadows: boolean;
     // roomWallColor: number;

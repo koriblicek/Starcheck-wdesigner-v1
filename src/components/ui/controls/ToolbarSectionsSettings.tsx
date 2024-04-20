@@ -25,7 +25,7 @@ export function ToolbarSectionsSettings({ visibleText }: IToolbarSectionsSetting
     return (
         <Fragment>
             <Grid item>
-                <Button size="small" color="primary" variant="contained" title={t('button.corpusMaterial')}
+                <Button size="small" color="secondary" variant="outlined" title={t('button.corpusMaterial')}
                     onClick={() => {
                         dispatch(wardrobeAppActions.toggleCorpusMaterialDrawer());
                     }}
@@ -36,7 +36,7 @@ export function ToolbarSectionsSettings({ visibleText }: IToolbarSectionsSetting
             </Grid>
             <Divider flexItem color="lightgray" orientation="vertical" sx={{ my: 0.5 }} />
             <Grid item>
-                <Button size="small" color="info" variant="contained" title={t('button.removeSection')}
+                <Button size="small" color="info" variant="outlined" title={t('button.removeSection')}
                     disabled={!canRemoveSection}
                     onClick={() => {
                         dispatch(wardrobeSaveActions.removeSection());
@@ -47,7 +47,7 @@ export function ToolbarSectionsSettings({ visibleText }: IToolbarSectionsSetting
                 </Button>
             </Grid>
             <Grid item>
-                <Button size="small" color="info" variant="contained" title={t('button.addSection')}
+                <Button size="small" color="info" variant="outlined" title={t('button.addSection')}
                     disabled={!canAddSection}
                     onClick={() => {
                         dispatch(wardrobeSaveActions.addSection());

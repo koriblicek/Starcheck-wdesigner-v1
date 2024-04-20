@@ -3,10 +3,14 @@ import { wardrobeSaveReducer } from './wardrobe-data/wardrobeSaveSlice';
 import { wardrobeSettingsReducer } from './wardrobe-data/wardrobeSettingsSlice';
 import { wardrobeAppReducer } from './wardrobe-data/wardrobeAppSlice';
 import { wardrobeAppDataReducer } from './wardrobe-data/wardrobeAppDataSlice';
+import { wardrobeSendDataReducer } from './wardrobe-data/wardrobeSendDataSlice';
+import { wardrobeAppInputDataReducer } from './wardrobe-data/wardrobeAppInputDataSlice';
 
 export const store = configureStore({
   reducer: {
     wardrobeAppData: wardrobeAppDataReducer,
+    wardrobeAppInputData: wardrobeAppInputDataReducer,
+    wardrobeSendData: wardrobeSendDataReducer,
     wardrobeSave: wardrobeSaveReducer,
     wardrobeSettings: wardrobeSettingsReducer,
     wardrobeApp: wardrobeAppReducer

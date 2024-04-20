@@ -23,7 +23,7 @@ export function Screenshoter() {
             setNoDoorScreenshot(true);
             dispatch(wardrobeAppActions.setDoorsVisibility({ visible: false }));
         }
-    }, [visibleSendDesignDialog]);
+    }, [visibleSendDesignDialog, dispatch]);
 
 
     useEffect(() => {
@@ -40,7 +40,7 @@ export function Screenshoter() {
             three.gl.render(three.scene, three.camera);
             ctx({ type: "SET_SCREENSHOT2", screenshot: three.gl.domElement.toDataURL("image/png", 10) });
         }
-    }, [noDoorScreenshot, doorScreenshot]);
+    }, [noDoorScreenshot, doorScreenshot, dispatch, ctx, three]);
 
 
     return null;

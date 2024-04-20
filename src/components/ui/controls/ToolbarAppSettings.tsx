@@ -9,11 +9,11 @@ import CreateNewFolderIcon from '@mui/icons-material/CreateNewFolder';
 import AlignHorizontalLeftIcon from '@mui/icons-material/AlignHorizontalLeft';
 import AlignHorizontalRightIcon from '@mui/icons-material/AlignHorizontalRight';
 
-interface IToolbarWardrobeSettingsProps {
+interface IToolbarAppSettingsProps {
     visibleText: boolean;
 }
 
-export function ToolbarWardrobeSettings({ visibleText }: IToolbarWardrobeSettingsProps) {
+export function ToolbarAppSettings({ visibleText }: IToolbarAppSettingsProps) {
 
     const dispatch = useDispatch();
 
@@ -22,7 +22,7 @@ export function ToolbarWardrobeSettings({ visibleText }: IToolbarWardrobeSetting
     return (
         <Fragment>
             <Grid item>
-                <Button size="small" color="secondary" variant="outlined" title={t('button.newDesign')}
+                <Button size="small" color="warning" variant="text" title={t('button.newDesign')}
                     onClick={() => {
                         dispatch(wardrobeAppActions.toggleNewDesignDialog());
                     }}
@@ -33,7 +33,7 @@ export function ToolbarWardrobeSettings({ visibleText }: IToolbarWardrobeSetting
             </Grid>
             <Divider flexItem color="lightgray" orientation="vertical" sx={{ my: 0.5 }} />
             <Grid item>
-                <Button size="small" color="info" variant="outlined" title={t('button.dimensions')}
+                <Button size="small" color="info" variant="text" title={t('button.dimensions')}
                     onClick={() => {
                         dispatch(wardrobeAppActions.toggleDimensionsDrawer());
                     }}
@@ -43,7 +43,7 @@ export function ToolbarWardrobeSettings({ visibleText }: IToolbarWardrobeSetting
                 </Button>
             </Grid>
             <Grid item>
-                <Button size="small" color="info" variant="outlined" title={t('button.leftPartition')}
+                <Button size="small" color="info" variant="text" title={t('button.leftPartition')}
                     onClick={() => {
                         dispatch(wardrobeSaveActions.toggleLeftPartition());
                     }}
@@ -53,7 +53,7 @@ export function ToolbarWardrobeSettings({ visibleText }: IToolbarWardrobeSetting
                 </Button>
             </Grid>
             <Grid item>
-                <Button size="small" color="info" variant="outlined" title={t('button.rightPartition')}
+                <Button size="small" color="info" variant="text" title={t('button.rightPartition')}
                     onClick={() => {
                         dispatch(wardrobeSaveActions.toggleRightPartition());
                     }}

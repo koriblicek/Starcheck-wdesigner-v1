@@ -5,19 +5,26 @@ import { useDispatch } from 'react-redux';
 import { App } from './components/App';
 import { useAppSelector } from './store/hooks';
 import { wardrobeSaveActions } from './store/wardrobe-data/wardrobeSaveSlice';
-import useGetAxios from './hooks/useGetAxios';
+import useAxiosFunction from './hooks/useAxiosFunction';
 
 interface IAppWardrobeDataProps {
   savePath: string;
 }
 
 function AppWardrobeData({ savePath }: IAppWardrobeDataProps) {
-
+  
   const dispatch = useDispatch();
 
-  const { response, error, isLoading } = useGetAxios<IWardrobeSave>(savePath);
+  const { response, error, isRequesting, axiosRequest } = useAxiosFunction<IWardrobeSave, null>();
 
   const initialized = useAppSelector(state => state.wardrobeSave.initialized);
+
+
+  useEffect(() => {
+    if (savePath) {
+      axiosRequest(savePath, "get");
+    }
+  }, [savePath, axiosRequest]);
 
   useEffect(() => {
     if (response) {
@@ -27,21 +34,21 @@ function AppWardrobeData({ savePath }: IAppWardrobeDataProps) {
 
   return (
     <Fragment>
-      {isLoading &&
+      {isRequesting &&
         <Grid container justifyContent='center'>
           <Grid item>
             <CircularProgress />
           </Grid>
         </Grid >
       }
-      {!isLoading && error &&
+      {!isRequesting && error &&
         <Alert variant="standard" color="error">
           <AlertTitle>{error.code}</AlertTitle>
           <Typography variant="subtitle2">{error.url}</Typography>
           <Typography variant="body1">{error.message}</Typography>
         </Alert>
       }
-      {!isLoading && !error && initialized &&
+      {!isRequesting && !error && initialized &&
         <App />
       }
     </Fragment>

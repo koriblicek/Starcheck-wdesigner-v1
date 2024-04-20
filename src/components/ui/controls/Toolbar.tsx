@@ -1,5 +1,5 @@
 import { Divider, Paper, Stack, ToggleButton, ToggleButtonGroup, Typography, useMediaQuery, useTheme } from "@mui/material";
-import { useState } from "react";
+import { Fragment, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useDispatch } from "react-redux";
 import { wardrobeAppActions } from "src/store/wardrobe-data/wardrobeAppSlice";
@@ -9,12 +9,13 @@ import { ToolbarDoorsPartsSettings } from "./ToolbarDoorsPartsSettings";
 import { ToolbarPreviewSettings } from "./ToolbarPreviewSettings";
 import { ToolbarWardrobeSettings } from "./ToolbarWardrobeSettings";
 import { LanguageSettings } from "./LanguageSettings";
+import { QualitySettings } from "./QualitySettings";
 import VerticalShadesClosedIcon from '@mui/icons-material/VerticalShadesClosed';
 import DoorSlidingIcon from '@mui/icons-material/DoorSliding';
 import SplitscreenIcon from '@mui/icons-material/Splitscreen';
 import PreviewIcon from '@mui/icons-material/Preview';
 import ConstructionIcon from '@mui/icons-material/Construction';
-import { QualitySettings } from "./QualitySettings";
+import SettingsIcon from '@mui/icons-material/Settings';
 
 export function Toolbar() {
 
@@ -27,9 +28,20 @@ export function Toolbar() {
 
     const [settings, setSettings] = useState<string>("wardrobe");
 
+
+    const [extraSettings, setExtraSettings] = useState<string>("");
+
+    function handleExtraSettings(_: React.MouseEvent<HTMLElement>, newSetting: string | null) {
+        if (newSetting !== null) {
+            setSettings("");
+            setExtraSettings(newSetting);
+        }
+    }
+
     function handleSettings(_: React.MouseEvent<HTMLElement>, newSetting: string | null) {
         if (newSetting !== null) {
             setSettings(newSetting);
+            setExtraSettings("");
             switch (newSetting) {
                 case "wardrobe":
                     dispatch(wardrobeAppActions.setDoorsVisibility({ visible: false }));
@@ -66,6 +78,8 @@ export function Toolbar() {
                     dispatch(wardrobeAppActions.setDoorsMoveBoxesVisibility({ visible: true }));
                     dispatch(wardrobeAppActions.setDoorsPartsClickBoxesVisibility({ visible: false }));
                     break;
+                case "settings":
+                    break;
             }
         }
     }
@@ -75,14 +89,10 @@ export function Toolbar() {
             p: .5,
             borderRadius: .5
         }}>
-            <Stack flexDirection="row" gap={1} justifyContent='left' sx={{ pb: 1 }}>
-                <LanguageSettings />
-                <Divider flexItem color="lightgray" orientation="vertical" sx={{ my: 0.5 }} />
-                <QualitySettings />
-                <Divider flexItem color="lightgray" orientation="vertical" sx={{ my: 0.5 }} />
+            <Stack flexDirection="row" gap={1} justifyContent='space-between' sx={{ pb: 1 }}>
                 <ToggleButtonGroup
                     size="small"
-                    color="secondary"
+                    color="warning"
                     exclusive
                     value={settings}
                     onChange={handleSettings}
@@ -91,37 +101,52 @@ export function Toolbar() {
                         title={t('button.editWardrobe')}
                         sx={{ p: .5, textWrap: 'nowrap' }}
                     >
-                        <ConstructionIcon />
+                        <ConstructionIcon fontSize="small" />
                         {textVisible && <Typography sx={{ mx: 1 }}>{t('button.step1')}</Typography>}
                     </ToggleButton>
                     <ToggleButton size="small" value="sections"
                         title={t('button.editSections')}
                         sx={{ p: .5, textWrap: 'nowrap' }}
                     >
-                        <VerticalShadesClosedIcon />
+                        <VerticalShadesClosedIcon fontSize="small" />
                         {textVisible && <Typography sx={{ mx: 1 }}>{t('button.step2')}</Typography>}
                     </ToggleButton>
                     <ToggleButton size="small" value="doors"
                         title={t('button.editDoors')}
                         sx={{ p: .5, textWrap: 'nowrap' }}
                     >
-                        <DoorSlidingIcon />
+                        <DoorSlidingIcon fontSize="small" />
                         {textVisible && <Typography sx={{ mx: 1 }}>{t('button.step3')}</Typography>}
                     </ToggleButton>
                     <ToggleButton size="small" value="doorsParts"
                         title={t('button.editDoorsParts')}
                         sx={{ p: .5, textWrap: 'nowrap' }}
                     >
-                        <SplitscreenIcon />
+                        <SplitscreenIcon fontSize="small" />
                         {textVisible && <Typography sx={{ mx: 1 }}>{t('button.step4')}</Typography>}
                     </ToggleButton>
                     <ToggleButton size="small" value="preview"
                         title={t('button.preview')}
                         sx={{ p: .5, textWrap: 'nowrap' }}
                     >
-                        <PreviewIcon />
+                        <PreviewIcon fontSize="small" />
                         {textVisible && <Typography sx={{ mx: 1 }}>{t('button.step5')}</Typography>}
                     </ToggleButton>
+                </ToggleButtonGroup>
+
+                <ToggleButtonGroup
+                    size="small"
+                    color="warning"
+                    exclusive
+                    value={extraSettings}
+                    onChange={handleExtraSettings}
+                >
+                    <ToggleButton size="small" value="settings"
+                        title={t('button.settings')}
+                    // sx={{ p: '0.4rem' }}
+                    // onClick={() => dispatch(wardrobeAppActions.toggleShadows())}
+                    ><SettingsIcon fontSize="small" />
+                    </ToggleButton>;
                 </ToggleButtonGroup>
             </Stack>
             <Divider />
@@ -140,6 +165,13 @@ export function Toolbar() {
                 }
                 {settings === "preview" &&
                     <ToolbarPreviewSettings visibleText={textVisible} />
+                }
+                {extraSettings === "settings" &&
+                    <Fragment>
+                        <LanguageSettings visibleText={textVisible} />
+                        <Divider flexItem color="lightgray" orientation="vertical" sx={{ my: 0.5 }} />
+                        <QualitySettings visibleText={textVisible} />
+                    </Fragment>
                 }
             </Stack>
         </Paper >

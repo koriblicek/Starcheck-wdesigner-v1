@@ -24,6 +24,7 @@ const initialState = {
     visibleNewDesignDialog: false,
     visibleNewDesignLoader: false,
     visibleSendDesignDialog: false,
+    visibleSendDesignUploader: false,
     cameraTarget: defaultCameraTarget,
     shadows: true
     // roomWallColor: 0xffffff,
@@ -116,6 +117,10 @@ export const wardrobeAppSlice = createSlice({
         toggleSendDesignDialog: (state) => {
             state.visibleSendDesignDialog = !state.visibleSendDesignDialog;
             wardrobeAppSlice.caseReducers.enableOrbitControls(state, { type: "enableOrbitControls", payload: { enabled: !state.visibleSendDesignDialog } });
+        },
+        toggleSendDesignUploader: (state) => {
+            state.visibleSendDesignUploader = !state.visibleSendDesignUploader;
+            wardrobeAppSlice.caseReducers.enableOrbitControls(state, { type: "enableOrbitControls", payload: { enabled: !state.visibleSendDesignUploader } });
         },
         setDefaultCameraTarget: (state) => {
             state.cameraTarget = defaultCameraTarget;

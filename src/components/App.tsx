@@ -24,7 +24,7 @@ function ThreeApp({ sectionsScreenshoting }: IThreeAppProps) {
 
     //const rootElement = useAppSelector(state => state.wardrobeApp.in)
     return (
-        <Canvas shadows={shadows} gl={{ antialias: true, toneMapping: NoToneMapping, preserveDrawingBuffer: false }} linear>
+        <Canvas shadows={shadows} gl={{ antialias: true, toneMapping: NoToneMapping, preserveDrawingBuffer: false }} linear camera={{ position: [0, 2, 10] }}>
             <TextureLoaders />
             <ExtendedOrbitControls />
             <Perf position="bottom-left" showGraph={false} />
@@ -46,6 +46,7 @@ export function App() {
     const ref = useRef<HTMLDivElement>(null);
     return (
         <div ref={ref} style={{ position: 'relative', width: '100%', height: '100vh' }}>
+            {/*  */}
             <ThreeApp sectionsScreenshoting={false} />
             <Controls />
             <Drawers />
