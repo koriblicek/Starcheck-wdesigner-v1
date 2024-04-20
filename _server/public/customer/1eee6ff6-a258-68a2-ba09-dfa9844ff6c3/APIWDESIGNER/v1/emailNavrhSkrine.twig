@@ -1,0 +1,39 @@
+
+{% block body %}
+    <table width="100%" border="0" cellpadding="0" cellspacing="0" style="width:100%;max-width:640px;">
+        <tbody>
+        <tr>
+            <td style="vertical-align: top;">
+                <table border="0" cellpadding="0" cellspacing="0" style="width:100%;">
+                    <tbody>
+                    <tr>
+                        <td style="vertical-align: top;padding:10px 30px;">
+                            <a href="{{ absolute_url(path('home')) }}" target="_blank"><img src="{{ absolute_url(asset('/design/logo-radime-zivnostnikom.png')) }}" width="" height="73" alt="Logo " border="0" style="display:inline-block;" /></a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td> </td>
+                    </tr>
+                    <tr>
+                        <td style="vertical-align: top;padding:10px 30px;font:normal normal normal 13px/1.3em Arial;color:#666666;">
+                            Na stránkach <b>{{ absolute_url(path('online-poradna')) }}</b> bola zanechaná otázka:
+                            <br />
+                            <br />E-mail:			{{ data['email'] }}
+                            <br />Otázka:			{{ data['otazka'] }}
+                            <br />
+                            <br />Odpoveď môžete editovať na tejto linke: <a href="{{ editurl }}">{{ editurl }}</a>
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="vertical-align: top;padding:10px 30px;font:normal normal normal 10px/1.3em Arial;color:#666666;">
+                            Táto požiadavka bola vygenerovaná dňa {{ datum }} z IP adresy: {{ IPadress }}
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+{% endblock %}

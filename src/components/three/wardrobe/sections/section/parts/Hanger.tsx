@@ -17,10 +17,9 @@ const anchor = { x: EObjectXAnchor.left, y: EObjectYAnchor.middle, z: EObjectZAn
 function Hanger({ size, data }: IHangerProps) {
 
     const [rnd] = useState<number>(0.7 + 0.3 * Math.random());
-    const { boardWidth, safetyBoardHeight, rodSpace, rodRadius } = useAppSelector((state) => state.wardrobeSettings.wardrobeSetup);
+    const { boardWidth, safetyBoardHeight, rodSpace, rodRadius,hangerMesh } = useAppSelector((state) => state.wardrobeSettings.wardrobeSetup);
 
-    // const { scene:scene1 } = useGLTF("/data/objects/wardrobe/hanger1.gltf");
-    const { scene:scene2 } = useGLTF("/data/objects/wardrobe/hanger2.gltf");
+    const { scene:scene2 } = useGLTF(hangerMesh);
     const hangerCopy1 = useMemo(() => scene2.clone(), [scene2]);
     const hangerCopy2 = useMemo(() => scene2.clone(), [scene2]);
 

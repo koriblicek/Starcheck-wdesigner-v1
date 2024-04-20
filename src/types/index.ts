@@ -251,7 +251,7 @@ export interface IWardrobeSettingsSetup {
     defaultDoorPartsMaterialIds: string[];
     defaultDoorPartsMaterialId: string;
     photoWallpaperDoorPartsMaterialId: string;
-    defaultSave: string;
+    hangerMesh: string;
 }
 //#endregion
 
@@ -261,6 +261,10 @@ export interface IWardrobeRoomSetup {
     height: number;
     depth: number;
     floorTexture: string;
+    chairMesh: string;
+    tableMesh: string;
+    curtainMesh: string;
+    windowMesh: string;
 
 }
 //#endregion

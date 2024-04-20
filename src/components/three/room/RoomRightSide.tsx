@@ -23,7 +23,7 @@ const RoomRightSide = ({
     setup
 }: IRoomRightSideProps) => {
 
-    const { scene } = useGLTF("/data/objects/room/window.gltf");
+    const { scene } = useGLTF(setup.windowMesh);
     scene.children.forEach((mesh) => {
         mesh.castShadow = true;
     });

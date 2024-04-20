@@ -50,7 +50,7 @@ function AppWardrobeSettings({ appData }: AppWardrobeSettingsProps) {
       }
       {!isRequesting && !error && response &&
         <AppWardrobeData
-          savePath={(appInputData.dataDesignId !== "") ? appData.dataURL + "?" + appInputData.dataDesignId : response.wardrobeSetup.defaultSave}
+          savePath={`${appData.dataURL}${(appInputData.dataDesignId !== "") ? "/" + appInputData.dataDesignId : ""}`}
         />
       }
     </Fragment>

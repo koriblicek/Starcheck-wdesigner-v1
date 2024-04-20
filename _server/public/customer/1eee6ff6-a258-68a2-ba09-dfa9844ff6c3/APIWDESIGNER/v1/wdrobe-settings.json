@@ -32,8 +32,8 @@
             "fa80a8e8-5c98-4bae-aa05-a205ec6ced28"
         ],
         "defaultDoorPartsMaterialId": "fa80a8e8-5c98-4bae-aa05-a205ec6ced28",
-		"defaultSave": "https://www.starcheck.sk/customer/1ee895ee-6f95-6c22-8f83-ef72993f7122/APIWDESIGNER/v1/save/20240104_1e71138d-6aae-4d50-9c63-cfe0d8186a22.json",
-        "photoWallpaperDoorPartsMaterialId": "35f1accf-4332-4c7e-803f-d7cdae8e6c22"
+        "photoWallpaperDoorPartsMaterialId": "35f1accf-4332-4c7e-803f-d7cdae8e6c22",
+		"hangerMesh":"https://www.starcheck.sk/customer/_shared/APIWDESIGNER/v1/objects/wardrobe/hanger.gltf"
     },
     "sectionsSetup": {
         "ee71138d-6aae-4d50-9c63-cfe0d8186a2a": {
@@ -4641,6 +4641,10 @@
         "width": 7.00,
         "height": 2.80,
         "depth": 6.00,
-        "floorTexture": "https://www.starcheck.sk/customer/_shared/APIWDESIGNER/v1/textures/floor/color-map.png"
+        "floorTexture": "https://www.starcheck.sk/customer/_shared/APIWDESIGNER/v1/textures/floor/color-map.png",
+		"chairMesh":"https://www.starcheck.sk/customer/_shared/APIWDESIGNER/v1/objects/room/chair.gltf",
+		"tableMesh":"https://www.starcheck.sk/customer/_shared/APIWDESIGNER/v1/objects/room/table.gltf",
+		"curtainMesh":"https://www.starcheck.sk/customer/_shared/APIWDESIGNER/v1/objects/room/curtain.gltf",
+		"windowMesh":"https://www.starcheck.sk/customer/_shared/APIWDESIGNER/v1/objects/room/window.gltf"
     }
 }

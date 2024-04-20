@@ -12,9 +12,9 @@ const RoomFurniture = ({
     setup
 }: IRoomFurnitureProps) => {
 
-    const chair = useGLTF("/data/objects/room/chair.gltf");
-    const table = useGLTF("/data/objects/room/table.gltf");
-    const curtain = useGLTF("/data/objects/room/curtain.gltf");
+    const chair = useGLTF(setup.chairMesh);
+    const table = useGLTF(setup.tableMesh);
+    const curtain = useGLTF(setup.curtainMesh);
 
     const chair1 = useMemo(() => chair.scene.clone(), [chair.scene]);
     const chair2 = useMemo(() => chair.scene.clone(), [chair.scene]);

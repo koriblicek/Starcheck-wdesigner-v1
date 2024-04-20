@@ -15,7 +15,7 @@ export function NewDesignLoader() {
 
     const visibleNewDesignLoader = useAppSelector(state => state.wardrobeApp.visibleNewDesignLoader);
 
-    const { defaultSave } = useAppSelector(state => state.wardrobeSettings.wardrobeSetup);
+    const {dataURL } = useAppSelector(state => state.wardrobeAppData);
     const { t } = useTranslation();
 
     const { response, isRequesting, error, axiosRequest, cancelRequest } = useAxiosFunction<IWardrobeSave, null>();
@@ -34,9 +34,9 @@ export function NewDesignLoader() {
 
     useEffect(() => {
         if (visibleNewDesignLoader) {
-            axiosRequest(defaultSave, "get");
+            axiosRequest(dataURL, "get");
         }
-    }, [visibleNewDesignLoader, axiosRequest, defaultSave]);
+    }, [visibleNewDesignLoader, axiosRequest, dataURL]);
 
     return (
         <Fragment>

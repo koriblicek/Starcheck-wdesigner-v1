@@ -1,0 +1,69 @@
+{
+    "dimensions": {
+        "width": 6.00,
+        "height": 2.60,
+        "depth": 0.60
+    },
+    "sidePartitions": {
+        "left": false,
+        "right": false
+    },
+    "sections": {
+        "sectionsWidth": 0.9766666666666669,
+        "sectionsData": [
+            "ee71138d-6aae-4d50-9c63-cfe0d8186a2a",
+            "f02a9bd8-4e64-4020-be14-21a03627cafb",
+            "22e532d0-ba91-4f51-a35c-3793d46b562e",
+            "15634b84-9a79-448f-befd-a81d3ae4c520",
+            "ee71138d-6aae-4d50-9c63-cfe0d8186a2a",
+            "ee71138d-6aae-4d50-9c63-cfe0d8186a2a"
+        ]
+    },
+    "doors": {
+        "doorsIncluded": true,
+        "doorsWidth": 0.9933333333333334,
+        "doorsData": [
+            {
+                "doorTypeId": "eca7158b-faba-45e0-bd6b-d9a835ecf50b",
+                "doorPartsMaterialIds": [
+                    "fa80a8e8-5c98-4bae-aa05-a205ec6ced28"
+                ]
+            },
+            {
+                "doorTypeId": "eca7158b-faba-45e0-bd6b-d9a835ecf50b",
+                "doorPartsMaterialIds": [
+                    "fa80a8e8-5c98-4bae-aa05-a205ec6ced28"
+                ]
+            },
+            {
+                "doorTypeId": "eca7158b-faba-45e0-bd6b-d9a835ecf50b",
+                "doorPartsMaterialIds": [
+                    "fa80a8e8-5c98-4bae-aa05-a205ec6ced28"
+                ]
+            },
+            {
+                "doorTypeId": "eca7158b-faba-45e0-bd6b-d9a835ecf50b",
+                "doorPartsMaterialIds": [
+                    "fa80a8e8-5c98-4bae-aa05-a205ec6ced28"
+                ]
+            },
+            {
+                "doorTypeId": "eca7158b-faba-45e0-bd6b-d9a835ecf50b",
+                "doorPartsMaterialIds": [
+                    "fa80a8e8-5c98-4bae-aa05-a205ec6ced28"
+                ]
+            },
+            {
+                "doorTypeId": "eca7158b-faba-45e0-bd6b-d9a835ecf50b",
+                "doorPartsMaterialIds": [
+                    "fa80a8e8-5c98-4bae-aa05-a205ec6ced28"
+                ]
+            }
+        ]
+    },
+    "materials": {
+        "corpusMaterialId": "3ad8bdd6-c284-493d-b558-b39ba2085d3e",
+        "ironWorkMaterialId": "7f3f4086-c2a6-4e56-9a07-a1414017950e",
+        "photoWallpaperMaterialId": "6b43f328-9fc8-4517-b323-2056b85bf49a"
+    }
+}
