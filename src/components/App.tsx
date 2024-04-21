@@ -1,6 +1,6 @@
 import { Canvas } from '@react-three/fiber';
 import { NoToneMapping } from 'three';
-import { Perf } from 'r3f-perf';
+// import { Perf } from 'r3f-perf';
 import { Controls } from './ui/Controls';
 import { Drawers } from './ui/drawers/Drawers';
 import { ExtendedOrbitControls } from './three/utils/camera/ExtendedOrbitControls';
@@ -14,6 +14,7 @@ import Wardrobe from './three/wardrobe/Wardrobe';
 import TextureLoaders from './three/utils/loaders/TextureLoaders';
 import LightScreenshoting from './three/utils/lights/LightScreenshoting';
 import Light from './three/utils/lights/Light';
+import { FULLSCREEN_DIV_ID } from 'src/types';
 
 interface IThreeAppProps {
     sectionsScreenshoting: boolean;
@@ -27,7 +28,7 @@ function ThreeApp({ sectionsScreenshoting }: IThreeAppProps) {
         <Canvas shadows={shadows} gl={{ antialias: true, toneMapping: NoToneMapping, preserveDrawingBuffer: false }} linear camera={{ position: [0, 2, 10] }}>
             <TextureLoaders />
             <ExtendedOrbitControls />
-            <Perf position="bottom-left" showGraph={false} />
+            {/* <Perf position="bottom-left" showGraph={false} /> */}
             {sectionsScreenshoting ? <LightScreenshoting /> : <Light shadows={shadows} />}
             {shadows && <SoftShadows size={14} focus={0} />}
             <Suspense fallback={null}>
@@ -44,9 +45,9 @@ function ThreeApp({ sectionsScreenshoting }: IThreeAppProps) {
 export function App() {
 
     const ref = useRef<HTMLDivElement>(null);
+
     return (
-        <div ref={ref} style={{ position: 'relative', width: '100%', height: '100vh' }}>
-            {/*  */}
+        <div id={FULLSCREEN_DIV_ID} ref={ref} style={{ position: 'relative', width: '100%', height: '100vh' }}>
             <ThreeApp sectionsScreenshoting={false} />
             <Controls />
             <Drawers />

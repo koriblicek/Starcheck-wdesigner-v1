@@ -1,4 +1,4 @@
-import { Divider, Paper, Stack, ToggleButton, ToggleButtonGroup, Typography, useMediaQuery, useTheme } from "@mui/material";
+import { Divider, Grid, Paper, Stack, ToggleButton, ToggleButtonGroup, Typography, useMediaQuery, useTheme } from "@mui/material";
 import { Fragment, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useDispatch } from "react-redux";
@@ -16,6 +16,9 @@ import SplitscreenIcon from '@mui/icons-material/Splitscreen';
 import PreviewIcon from '@mui/icons-material/Preview';
 import ConstructionIcon from '@mui/icons-material/Construction';
 import SettingsIcon from '@mui/icons-material/Settings';
+import FullscreenIcon from '@mui/icons-material/Fullscreen';
+import FullscreenExitIcon from '@mui/icons-material/FullscreenExit';
+import { FullScreenMode } from "./FullScreenMode";
 
 export function Toolbar() {
 
@@ -27,7 +30,7 @@ export function Toolbar() {
     const { t } = useTranslation();
 
     const [settings, setSettings] = useState<string>("wardrobe");
-
+    const [fullScreen, setFullScreen] = useState<boolean>(false);
 
     const [extraSettings, setExtraSettings] = useState<string>("");
 
@@ -89,7 +92,20 @@ export function Toolbar() {
             p: .5,
             borderRadius: .5
         }}>
-            <Stack flexDirection="row" gap={1} justifyContent='space-between' sx={{ pb: 1 }}>
+            <FullScreenMode onFullScreenToggle={setFullScreen} fullScreen={fullScreen} />
+            <Stack flexDirection="row" gap={1} sx={{ pb: 1 }}>
+                <ToggleButton size="small" color="warning"
+                    value="fullscreen"
+                    title={t('button.fullScreen')}
+                    onClick={() => setFullScreen(!fullScreen)}
+                >
+                    {
+                        fullScreen ?
+                            <FullscreenExitIcon fontSize="small" />
+                            :
+                            <FullscreenIcon fontSize="small" />
+                    }
+                </ToggleButton>
                 <ToggleButtonGroup
                     size="small"
                     color="warning"
@@ -133,7 +149,6 @@ export function Toolbar() {
                         {textVisible && <Typography sx={{ mx: 1 }}>{t('button.step5')}</Typography>}
                     </ToggleButton>
                 </ToggleButtonGroup>
-
                 <ToggleButtonGroup
                     size="small"
                     color="warning"
@@ -169,7 +184,7 @@ export function Toolbar() {
                 {extraSettings === "settings" &&
                     <Fragment>
                         <LanguageSettings visibleText={textVisible} />
-                        <Divider flexItem color="lightgray" orientation="vertical" sx={{ my: 0.5 }} />
+                        <Divider flexItem orientation="vertical" sx={{ my: 0.5 }} />
                         <QualitySettings visibleText={textVisible} />
                     </Fragment>
                 }

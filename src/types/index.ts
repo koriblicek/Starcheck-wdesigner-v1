@@ -1,6 +1,7 @@
 import { Vector3Tuple } from "three";
 
 export const APP_NAME = "APIWDESIGNER";
+export const FULLSCREEN_DIV_ID = "apiwdesigner-fullscreen-div";
 export const APP_LANGUAGES = ["sk", "gb"];
 export const LOCAL_STORAGE_USER_DATA_KEY = "starcheck-wdesigner-v1-user-data";
 //#region APP
