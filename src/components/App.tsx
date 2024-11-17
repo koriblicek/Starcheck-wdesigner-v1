@@ -5,7 +5,7 @@ import { Controls } from './ui/Controls';
 import { Drawers } from './ui/drawers/Drawers';
 import { ExtendedOrbitControls } from './three/utils/camera/ExtendedOrbitControls';
 import { Room } from './three/room/Room';
-import { Suspense, useRef } from 'react';
+import { Suspense } from 'react';
 import { Environment, SoftShadows } from '@react-three/drei';
 import { RoomScreenshoting } from './three/room/RoomScreenshoting';
 import { useAppSelector } from 'src/store/hooks';
@@ -43,11 +43,8 @@ function ThreeApp({ sectionsScreenshoting }: IThreeAppProps) {
 
 
 export function App() {
-
-    const ref = useRef<HTMLDivElement>(null);
-
     return (
-        <div id={FULLSCREEN_DIV_ID} ref={ref} style={{ position: 'relative', width: '100%', height: '100vh' }}>
+        <div id={FULLSCREEN_DIV_ID} style={{ position: 'relative', width: '100%', height: '100vh' }}>
             <ThreeApp sectionsScreenshoting={false} />
             <Controls />
             <Drawers />

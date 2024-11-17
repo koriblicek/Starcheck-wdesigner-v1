@@ -37,6 +37,7 @@ export function DoorsDrawer() {
                     }
                 }
             }}
+            ModalProps={{ container: document.fullscreenElement ?? document.body }}
         >
             <DialogTitle sx={{ p: 1, pl: 2, pr: 2 }}>
                 <Grid container alignItems='center'>

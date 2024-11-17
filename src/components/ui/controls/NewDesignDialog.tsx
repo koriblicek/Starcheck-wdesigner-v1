@@ -30,6 +30,7 @@ export function NewDesignDialog() {
             onClose={() => {
                 handleClose();
             }}
+            container={document.fullscreenElement ?? document.body}
         >
             <DialogTitle>{t('title.newDesignDialog')}</DialogTitle>
             <DialogContent>

@@ -112,8 +112,8 @@ export function SendDesignDialog({ visibleSendDesignDialog, sendData, saveData }
 
     //submit request
     const onSubmit: SubmitHandler<IWardrobeSendData> = () => {
-        handleClose();
         dispatch(wardrobeAppActions.toggleSendDesignUploader());
+        handleClose();
     };
 
     //on form change save
@@ -135,6 +135,8 @@ export function SendDesignDialog({ visibleSendDesignDialog, sendData, saveData }
                 handleClose();
             }}
             disableRestoreFocus
+            container={document.fullscreenElement ?? document.body}
+
         >
             <DialogTitle>{t('title.sendDesignDialog')}</DialogTitle>
             <IconButton
@@ -143,7 +145,7 @@ export function SendDesignDialog({ visibleSendDesignDialog, sendData, saveData }
                     position: 'absolute',
                     right: 8,
                     top: 8,
-                    color: (theme) => theme.palette.grey[500],
+                    color: theme.palette.grey[500],
                 }}
             >
                 <CloseIcon />

@@ -15,7 +15,7 @@ export function NewDesignLoader() {
 
     const visibleNewDesignLoader = useAppSelector(state => state.wardrobeApp.visibleNewDesignLoader);
 
-    const {dataURL } = useAppSelector(state => state.wardrobeAppData);
+    const { dataURL } = useAppSelector(state => state.wardrobeAppData);
     const { t } = useTranslation();
 
     const { response, isRequesting, error, axiosRequest, cancelRequest } = useAxiosFunction<IWardrobeSave, null>();
@@ -41,7 +41,10 @@ export function NewDesignLoader() {
     return (
         <Fragment>
             {isRequesting &&
-                <Dialog open={visibleNewDesignLoader}>
+                <Dialog
+                    open={visibleNewDesignLoader}
+                    container={document.fullscreenElement ?? document.body}
+                >
                     <DialogTitle>{t('title.newDesignLoaderLoading')}</DialogTitle>
                     <DialogContent>
                         <LinearProgress />

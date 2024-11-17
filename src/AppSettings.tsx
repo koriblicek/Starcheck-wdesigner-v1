@@ -30,7 +30,7 @@ function AppSettings({ inputData }: IAppSettingsProps) {
       dispatch(wardrobeAppInputDataActions.initializeAppInitData({ data: inputData }));
       dispatch(wardrobeSendDataActions.initializeSendData());
     }
-  }, [response, dispatch]);
+  }, [response, dispatch, inputData]);
 
   return (
     <Fragment>

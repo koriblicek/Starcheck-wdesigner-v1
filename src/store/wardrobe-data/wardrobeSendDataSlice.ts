@@ -23,8 +23,9 @@ export const wardrobeSendDataSlice = createSlice({
         },
         updateSendData: (state, action: PayloadAction<{ data: IWardrobeSendData; }>) => {
             //initialize app data
-            state = { ...state, ...action.payload.data };
-            wardrobeSendDataSlice.caseReducers.saveStateToLocalStorage(state);
+            const data = { ...state, ...action.payload.data };
+            wardrobeSendDataSlice.caseReducers.saveStateToLocalStorage(data);
+            return data;
         },
         saveStateToLocalStorage: (state) => {
             localStorage.setItem(LOCAL_STORAGE_USER_DATA_KEY, JSON.stringify(state));

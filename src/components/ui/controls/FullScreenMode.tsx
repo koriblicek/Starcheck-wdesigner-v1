@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useCallback, useEffect } from 'react';
 import { FULLSCREEN_DIV_ID } from 'src/types';
 
 export interface IFullScreenModeProps {
@@ -11,7 +11,6 @@ export function FullScreenMode({ onFullScreenToggle, fullScreen }: IFullScreenMo
     const fullScreenElement = document.getElementById(FULLSCREEN_DIV_ID);
 
     useEffect(() => {
-        console.log(fullScreen, fullScreenElement);
         if (fullScreen) {
             //if not in fullscreen mode - request fullscreen mode for element
             if (document.fullscreenElement === null) {
@@ -25,20 +24,21 @@ export function FullScreenMode({ onFullScreenToggle, fullScreen }: IFullScreenMo
                 document.exitFullscreen();
             }
         }
-    }, [fullScreen]);
+    }, [fullScreen, fullScreenElement]);
 
-    useEffect(() => {
-        document.addEventListener('fullscreenchange', (ev) => handleFullScreenExit(ev));
-        return () => {
-            document.removeEventListener('fullscreenchange', (ev) => handleFullScreenExit(ev));
-        };
-    }, []);
-
-    function handleFullScreenExit(ev: Event) {
+    const handleFullScreenExit = useCallback(() => {
         if (document.fullscreenElement === null) {
             onFullScreenToggle(false);
         }
-    }
+    }, []);
+
+
+    useEffect(() => {
+        document.addEventListener('fullscreenchange', handleFullScreenExit);
+        return () => {
+            document.removeEventListener('fullscreenchange', handleFullScreenExit);
+        };
+    }, [handleFullScreenExit]);
 
     return null;
 }

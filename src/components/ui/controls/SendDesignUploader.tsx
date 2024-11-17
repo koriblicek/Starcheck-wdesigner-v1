@@ -36,7 +36,7 @@ export function SendDesignUploader({ visibleSendDesignUploader, sendData, saveDa
             bodyFormData.append("save", JSON.stringify(saveData));
             axiosRequest(appData.sendURL, "post", bodyFormData, { headers: { 'Content-Type': 'multipart/form-data' } });
         }
-    }, [visibleSendDesignUploader, screenshot1, screenshot2, sendData, appData, saveData, axiosRequest]);
+    }, [visibleSendDesignUploader, screenshot1, screenshot2, sendData, appData, saveData, appInputData, axiosRequest]);
 
     function handleClose() {
         dispatch(wardrobeAppActions.toggleSendDesignUploader());
@@ -44,7 +44,10 @@ export function SendDesignUploader({ visibleSendDesignUploader, sendData, saveDa
 
     return (
         <Fragment>
-            <Dialog open={visibleSendDesignUploader}>
+            <Dialog
+                open={visibleSendDesignUploader}
+                container={document.fullscreenElement ?? document.body}
+            >
                 <DialogTitle>{t('title.sendDesignUploader')}</DialogTitle>
                 <DialogContent>
                     {isRequesting &&
